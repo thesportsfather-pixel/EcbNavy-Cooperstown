@@ -38,7 +38,7 @@ body{
 
   max-width:1100px;
   margin:0 auto;
-  padding:26px 18px 280px;
+  padding:26px 18px 300px;
   min-height:100vh;
 
   background:
@@ -142,7 +142,7 @@ body{
 }
 
 
-/* PLAYER HEADER */
+/* PLAYER CARD */
 
 .player-card{
   max-width:760px;
@@ -373,9 +373,11 @@ body{
       var(--yellow),
       var(--yellow-dark)
     );
+
   color:#07182e;
   border-color:#fff;
   transform:scale(1.08);
+
   box-shadow:
     0 0 0 4px rgba(255,212,38,.28),
     0 7px 15px rgba(0,0,0,.45);
@@ -537,7 +539,7 @@ body{
 }
 
 
-/* FIXED BASEBALL CHECKOUT */
+/* FIXED CHECKOUT */
 
 .donation-box{
   position:fixed;
@@ -768,7 +770,7 @@ body{
   }
 
   #fundraiser{
-    padding-bottom:320px;
+    padding-bottom:330px;
   }
 }
 
@@ -948,8 +950,6 @@ The numbers on the baseballs are added together to determine your donation.
 ></div>
 
 
-<!-- GENERAL DONATION -->
-
 <div class="general-card">
 
 <h2>
@@ -1015,8 +1015,6 @@ The numbers on the baseballs are added together to determine your donation.
 
 </div>
 
-
-<!-- FIXED BASEBALL CHECKOUT -->
 
 <div
   class="donation-box"
@@ -1135,10 +1133,6 @@ If every baseball is filled, this player will raise
 
 <script>
 
-/* ==========================================
-   PLAYER LIST
-========================================== */
-
 const players = {
 
   "knox-graham":{
@@ -1209,10 +1203,6 @@ const players = {
 };
 
 
-/* ==========================================
-   STATE
-========================================== */
-
 let currentPlayerKey =
   "knox-graham";
 
@@ -1225,10 +1215,6 @@ let currentBaseballs =
 let selectedBalls =
   [];
 
-
-/* ==========================================
-   ELEMENTS
-========================================== */
 
 const playerNumber =
   document.getElementById(
@@ -1316,8 +1302,6 @@ const payButton =
   );
 
 
-/* GENERAL DONATION ELEMENTS */
-
 const generalPlayerName =
   document.getElementById(
     "generalPlayerName"
@@ -1349,10 +1333,6 @@ const generalStatus =
   );
 
 
-/* ==========================================
-   GET PLAYER FROM URL
-========================================== */
-
 function getPlayerKey(){
 
   const params =
@@ -1379,36 +1359,11 @@ function getPlayerKey(){
 }
 
 
-/* ==========================================
-   PLAYER DISPLAY
-========================================== */
-
-function showFallbackPlayer(){
-
-  const fallback =
-    players[
-      currentPlayerKey
-    ];
-
-  playerNumber.textContent =
-    "#" +
-    fallback.number;
-
-  playerName.textContent =
-    fallback.name.toUpperCase();
-
-  updateGeneralDonationPlayer();
-
-}
-
-
 function updateGeneralDonationPlayer(){
 
   const player =
     currentPlayer ||
-    players[
-      currentPlayerKey
-    ];
+    players[currentPlayerKey];
 
   if(!player){
     return;
@@ -1423,9 +1378,22 @@ function updateGeneralDonationPlayer(){
 }
 
 
-/* ==========================================
-   FUNDRAISER API
-========================================== */
+function showFallbackPlayer(){
+
+  const fallback =
+    players[currentPlayerKey];
+
+  playerNumber.textContent =
+    "#" +
+    fallback.number;
+
+  playerName.textContent =
+    fallback.name.toUpperCase();
+
+  updateGeneralDonationPlayer();
+
+}
+
 
 async function getFundraiserData(){
 
@@ -1513,10 +1481,6 @@ async function getFundraiserData(){
 
 }
 
-
-/* ==========================================
-   LOAD FUNDRAISER
-========================================== */
 
 async function loadFundraiser(){
 
@@ -1619,9 +1583,7 @@ async function loadFundraiser(){
       error &&
       error.message
         ? error.message
-        : String(
-            error
-          );
+        : String(error);
 
 
     retryButton.style.display =
@@ -1631,10 +1593,6 @@ async function loadFundraiser(){
 
 }
 
-
-/* ==========================================
-   RENDER BOARD
-========================================== */
 
 function renderBoard(){
 
@@ -1809,10 +1767,6 @@ function renderBoard(){
 }
 
 
-/* ==========================================
-   PROGRESS
-========================================== */
-
 function updateProgress(
   totals
 ){
@@ -1852,10 +1806,6 @@ function updateProgress(
 
 }
 
-
-/* ==========================================
-   BALL SELECTION
-========================================== */
 
 function toggleBall(
   number,
@@ -1913,9 +1863,7 @@ function selectedTotal(){
 
       return (
         total +
-        Number(
-          number
-        )
+        Number(number)
       );
 
     },
@@ -1924,10 +1872,6 @@ function selectedTotal(){
 
 }
 
-
-/* ==========================================
-   BASEBALL CHECKOUT BAR
-========================================== */
 
 function updateDonationBox(){
 
@@ -1973,9 +1917,7 @@ function updateDonationBox(){
 
   const player =
     currentPlayer ||
-    players[
-      currentPlayerKey
-    ];
+    players[currentPlayerKey];
 
 
   donationDetail.textContent =
@@ -2031,10 +1973,6 @@ function clearSelections(){
 
 }
 
-
-/* ==========================================
-   BASEBALL CHECKOUT
-========================================== */
 
 async function startStripeCheckout(){
 
@@ -2123,7 +2061,6 @@ async function startStripeCheckout(){
 
           method:"POST",
 
-
           headers:{
 
             "Content-Type":
@@ -2133,7 +2070,6 @@ async function startStripeCheckout(){
               "application/json"
 
           },
-
 
           body:
             JSON.stringify({
@@ -2159,27 +2095,8 @@ async function startStripeCheckout(){
       );
 
 
-    const text =
-      await response.text();
-
-
-    let data;
-
-
-    try{
-
-      data =
-        JSON.parse(
-          text
-        );
-
-    }catch(error){
-
-      throw new Error(
-        "Checkout server returned invalid data."
-      );
-
-    }
+    const data =
+      await response.json();
 
 
     if(
@@ -2188,17 +2105,11 @@ async function startStripeCheckout(){
     ){
 
       throw new Error(
-        data &&
-        data.error
-          ? data.error
-          : "Unable to create Stripe checkout."
+        data.error ||
+        "Unable to create Stripe checkout."
       );
 
     }
-
-
-    checkoutStatus.textContent =
-      "Opening Stripe...";
 
 
     window.location.href =
@@ -2208,16 +2119,9 @@ async function startStripeCheckout(){
   }catch(error){
 
 
-    console.error(
-      error
-    );
-
-
     checkoutStatus.textContent =
-      error &&
-      error.message
-        ? error.message
-        : "Unable to start checkout.";
+      error.message ||
+      "Unable to start checkout.";
 
 
     payButton.disabled =
@@ -2232,9 +2136,38 @@ async function startStripeCheckout(){
 }
 
 
-/* ==========================================
-   GENERAL DONATION
-========================================== */
+anonymousCheckbox.addEventListener(
+  "change",
+  function(){
+
+    if(
+      anonymousCheckbox.checked
+    ){
+
+      donorNameInput.value =
+        "";
+
+      donorNameInput.disabled =
+        true;
+
+      donorNameInput.placeholder =
+        "Anonymous donation";
+
+
+    }else{
+
+
+      donorNameInput.disabled =
+        false;
+
+      donorNameInput.placeholder =
+        "Enter your name, family name, or business";
+
+    }
+
+  }
+);
+
 
 generalAnonymous.addEventListener(
   "change",
@@ -2253,7 +2186,9 @@ generalAnonymous.addEventListener(
       generalDonor.placeholder =
         "Anonymous donation";
 
+
     }else{
+
 
       generalDonor.disabled =
         false;
@@ -2391,27 +2326,8 @@ generalButton.addEventListener(
         );
 
 
-      const text =
-        await response.text();
-
-
-      let data;
-
-
-      try{
-
-        data =
-          JSON.parse(
-            text
-          );
-
-      }catch(error){
-
-        throw new Error(
-          "Checkout server returned invalid data."
-        );
-
-      }
+      const data =
+        await response.json();
 
 
       if(
@@ -2420,17 +2336,11 @@ generalButton.addEventListener(
       ){
 
         throw new Error(
-          data &&
-          data.error
-            ? data.error
-            : "Unable to create Stripe checkout."
+          data.error ||
+          "Unable to create checkout."
         );
 
       }
-
-
-      generalStatus.textContent =
-        "Opening Stripe...";
 
 
       window.location.href =
@@ -2440,17 +2350,9 @@ generalButton.addEventListener(
     }catch(error){
 
 
-      console.error(
-        "General donation error:",
-        error
-      );
-
-
       generalStatus.textContent =
-        error &&
-        error.message
-          ? error.message
-          : "Unable to start checkout.";
+        error.message ||
+        "Unable to start checkout.";
 
 
       generalButton.disabled =
@@ -2465,50 +2367,6 @@ generalButton.addEventListener(
   }
 );
 
-
-/* ==========================================
-   ANONYMOUS BASEBALL
-========================================== */
-
-anonymousCheckbox.addEventListener(
-  "change",
-  function(){
-
-    if(
-      anonymousCheckbox.checked
-    ){
-
-      donorNameInput.value =
-        "";
-
-
-      donorNameInput.disabled =
-        true;
-
-
-      donorNameInput.placeholder =
-        "Anonymous donation";
-
-
-    }else{
-
-
-      donorNameInput.disabled =
-        false;
-
-
-      donorNameInput.placeholder =
-        "Enter your name, family name, or business";
-
-    }
-
-  }
-);
-
-
-/* ==========================================
-   PAYMENT RETURN
-========================================== */
 
 async function handlePaymentReturn(){
 
@@ -2606,10 +2464,8 @@ async function handlePaymentReturn(){
     ){
 
       throw new Error(
-        data &&
-        data.error
-          ? data.error
-          : "Unable to verify payment."
+        data.error ||
+        "Unable to verify payment."
       );
 
     }
@@ -2625,12 +2481,6 @@ async function handlePaymentReturn(){
   }catch(error){
 
 
-    console.error(
-      "Payment verification error:",
-      error
-    );
-
-
     paymentBanner.textContent =
       "Payment was received. The fundraiser may take a moment to update.";
 
@@ -2638,10 +2488,6 @@ async function handlePaymentReturn(){
 
 }
 
-
-/* ==========================================
-   EVENTS
-========================================== */
 
 retryButton.addEventListener(
   "click",
@@ -2664,10 +2510,6 @@ payButton.addEventListener(
   startStripeCheckout
 );
 
-
-/* ==========================================
-   INITIALIZE
-========================================== */
 
 async function initialize(){
 
