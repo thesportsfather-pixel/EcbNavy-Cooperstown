@@ -1,0 +1,2382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+ECB Navy | Road to Cooperstown
+</title>
+
+<style>
+
+html,
+body{
+  margin:0;
+  padding:0;
+  background:#07182e;
+}
+
+body{
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+#fundraiser{
+  --navy:#07182e;
+  --navy2:#0d2b50;
+  --yellow:#ffd426;
+  --yellow2:#b89700;
+
+  max-width:1100px;
+
+  margin:0 auto;
+
+  padding:
+    35px 18px
+    280px;
+
+  min-height:100vh;
+
+  color:#fff;
+
+  background:
+    radial-gradient(
+      circle at top,
+      #163c68 0%,
+      #0c284b 38%,
+      #07182e 67%,
+      #020711 100%
+    );
+}
+
+
+/* HEADER */
+
+.header{
+  text-align:center;
+}
+
+.logo{
+  display:block;
+
+  width:
+    min(
+      420px,
+      88%
+    );
+
+  height:auto;
+
+  margin:
+    0 auto
+    20px;
+
+  filter:
+    drop-shadow(
+      0 8px 14px
+      rgba(0,0,0,.4)
+    );
+}
+
+.title{
+  margin:0;
+
+  font-size:
+    clamp(
+      42px,
+      8vw,
+      80px
+    );
+
+  line-height:.9;
+
+  font-style:italic;
+
+  font-weight:1000;
+
+  text-transform:
+    uppercase;
+
+  text-shadow:
+    3px 3px 0
+    #826900,
+
+    6px 6px 0
+    rgba(0,0,0,.4);
+}
+
+.title span{
+  color:
+    var(--yellow);
+}
+
+
+/* PLAYER SELECT */
+
+.player-select-card{
+
+  max-width:700px;
+
+  margin:
+    28px auto
+    18px;
+
+  padding:20px;
+
+  border:
+    2px solid
+    var(--yellow);
+
+  border-radius:
+    18px;
+
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      .28
+    );
+}
+
+.select-label{
+  display:block;
+
+  margin-bottom:
+    10px;
+
+  color:
+    var(--yellow);
+
+  text-align:
+    center;
+
+  font-size:
+    13px;
+
+  font-weight:
+    900;
+
+  letter-spacing:
+    2px;
+
+  text-transform:
+    uppercase;
+}
+
+.player-select{
+  width:100%;
+
+  padding:
+    15px 16px;
+
+  border-radius:
+    12px;
+
+  border:
+    2px solid
+    var(--yellow);
+
+  background:
+    #071b35;
+
+  color:#fff;
+
+  font-size:
+    18px;
+
+  font-weight:
+    900;
+}
+
+.player-name{
+  margin-top:
+    22px;
+
+  text-align:
+    center;
+
+  font-size:
+    32px;
+
+  font-weight:
+    1000;
+
+  text-transform:
+    uppercase;
+}
+
+.subtitle{
+  margin-top:
+    8px;
+
+  text-align:
+    center;
+
+  color:#dce6f1;
+}
+
+
+/* PROGRESS */
+
+.progress-card{
+  max-width:
+    700px;
+
+  margin:
+    26px auto;
+
+  padding:20px;
+
+  border:
+    2px solid
+    var(--yellow);
+
+  border-radius:
+    18px;
+
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      .28
+    );
+}
+
+.progress-numbers{
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  margin-bottom:
+    10px;
+
+  font-weight:
+    900;
+}
+
+.progress-track{
+  height:18px;
+
+  border-radius:
+    20px;
+
+  overflow:hidden;
+
+  background:
+    #233852;
+}
+
+.progress-fill{
+  width:0%;
+
+  height:100%;
+
+  border-radius:
+    20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #b89700,
+      #ffd426
+    );
+
+  transition:
+    width .4s ease;
+}
+
+
+/* INSTRUCTIONS */
+
+.instructions{
+  max-width:
+    760px;
+
+  margin:
+    26px auto;
+
+  text-align:
+    center;
+
+  line-height:
+    1.5;
+
+  font-size:
+    17px;
+}
+
+.instructions strong{
+  color:
+    var(--yellow);
+}
+
+.example{
+  display:inline-block;
+
+  margin-top:
+    12px;
+
+  padding:
+    10px 14px;
+
+  border-radius:
+    10px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .08
+    );
+
+  font-weight:
+    800;
+}
+
+
+/* BALL GRID */
+
+.loading{
+  padding:30px;
+
+  color:
+    var(--yellow);
+
+  text-align:
+    center;
+
+  font-weight:
+    900;
+}
+
+.ball-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      10,
+      1fr
+    );
+
+  gap:12px;
+}
+
+.ball-card{
+  text-align:
+    center;
+}
+
+.ball{
+  width:100%;
+
+  aspect-ratio:1;
+
+  border-radius:
+    50%;
+
+  border:
+    3px solid
+    #ddd;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #fff,
+      #f3f3f3 48%,
+      #d7d7d7
+    );
+
+  color:
+    #07182e;
+
+  display:flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  font-size:
+    clamp(
+      15px,
+      2vw,
+      22px
+    );
+
+  font-weight:
+    1000;
+
+  cursor:pointer;
+
+  position:
+    relative;
+
+  box-shadow:
+    0 5px 12px
+    rgba(
+      0,
+      0,
+      0,
+      .35
+    );
+}
+
+.ball:before,
+.ball:after{
+  content:"";
+
+  position:
+    absolute;
+
+  width:38%;
+
+  height:70%;
+
+  border:
+    2px dashed
+    #d12035;
+
+  border-top:none;
+
+  border-bottom:none;
+
+  border-radius:
+    50%;
+
+  opacity:.75;
+}
+
+.ball:before{
+  left:4%;
+}
+
+.ball:after{
+  right:4%;
+}
+
+.ball span{
+  position:
+    relative;
+
+  z-index:2;
+}
+
+.ball.selected{
+  background:
+    linear-gradient(
+      135deg,
+      #ffd426,
+      #b89700
+    );
+
+  color:
+    #07182e;
+
+  border-color:#fff;
+
+  transform:
+    scale(1.07);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(
+      255,
+      212,
+      38,
+      .3
+    );
+}
+
+.ball.sold{
+  background:
+    #28394d;
+
+  color:
+    #8293a7;
+
+  border-color:
+    #536578;
+
+  cursor:
+    not-allowed;
+
+  opacity:.75;
+}
+
+.ball.sold:before,
+.ball.sold:after{
+  display:none;
+}
+
+.donor-label{
+  min-height:
+    27px;
+
+  margin-top:
+    5px;
+
+  color:#dce6f1;
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  line-height:
+    1.15;
+}
+
+
+/* GENERAL DONATION */
+
+.general-card{
+  max-width:
+    700px;
+
+  margin:
+    42px auto
+    20px;
+
+  padding:
+    22px;
+
+  border:
+    2px solid
+    var(--yellow);
+
+  border-radius:
+    18px;
+
+  background:
+    rgba(
+      0,
+      0,
+      0,
+      .3
+    );
+}
+
+.general-card h2{
+  margin:
+    0 0 8px;
+
+  color:
+    var(--yellow);
+
+  text-align:
+    center;
+}
+
+.general-card p{
+  text-align:
+    center;
+
+  color:#dce6f1;
+}
+
+.general-input,
+.general-select{
+  width:100%;
+
+  padding:
+    13px;
+
+  margin-top:
+    10px;
+
+  border:
+    2px solid
+    #536578;
+
+  border-radius:
+    10px;
+
+  background:
+    #071b35;
+
+  color:#fff;
+
+  font-size:
+    16px;
+}
+
+.general-button{
+  width:100%;
+
+  margin-top:
+    14px;
+
+  padding:
+    15px;
+
+  border:0;
+
+  border-radius:
+    12px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #b89700,
+      #ffd426
+    );
+
+  color:
+    #07182e;
+
+  font-size:
+    17px;
+
+  font-weight:
+    1000;
+
+  cursor:pointer;
+}
+
+
+/* CHECKOUT BAR */
+
+.checkout-box{
+  position:fixed;
+
+  left:50%;
+
+  bottom:12px;
+
+  transform:
+    translateX(-50%);
+
+  width:
+    min(
+      1040px,
+      calc(
+        100% - 24px
+      )
+    );
+
+  padding:
+    12px 14px;
+
+  border:
+    2px solid
+    var(--yellow);
+
+  border-radius:
+    16px;
+
+  background:
+    rgba(
+      3,
+      15,
+      30,
+      .985
+    );
+
+  box-shadow:
+    0 12px 34px
+    rgba(
+      0,
+      0,
+      0,
+      .62
+    );
+
+  z-index:
+    9999;
+
+  display:none;
+}
+
+.checkout-box.active{
+  display:grid;
+
+  grid-template-columns:
+    140px
+    1fr
+    1.6fr
+    250px;
+
+  gap:14px;
+
+  align-items:
+    center;
+}
+
+.amount{
+  color:
+    var(--yellow);
+
+  font-size:
+    34px;
+
+  font-weight:
+    1000;
+}
+
+.detail{
+  font-size:
+    13px;
+}
+
+.donor-input{
+  width:100%;
+
+  padding:
+    10px;
+
+  border:
+    2px solid
+    #536578;
+
+  border-radius:
+    9px;
+
+  background:
+    #071b35;
+
+  color:#fff;
+}
+
+.anonymous{
+  display:flex;
+
+  gap:7px;
+
+  margin-top:
+    7px;
+
+  font-size:
+    12px;
+}
+
+.pay-button{
+  width:100%;
+
+  padding:
+    14px;
+
+  border:0;
+
+  border-radius:
+    12px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #b89700,
+      #ffd426
+    );
+
+  color:
+    #07182e;
+
+  font-weight:
+    1000;
+
+  cursor:pointer;
+}
+
+.status{
+  margin-top:
+    6px;
+
+  font-size:
+    11px;
+}
+
+.clear{
+  margin-top:
+    6px;
+
+  border:0;
+
+  background:none;
+
+  color:#bbb;
+
+  cursor:pointer;
+
+  text-decoration:
+    underline;
+}
+
+
+/* PAYMENT */
+
+.banner{
+  display:none;
+
+  max-width:
+    700px;
+
+  margin:
+    18px auto;
+
+  padding:
+    14px;
+
+  border-radius:
+    12px;
+
+  text-align:
+    center;
+
+  font-weight:
+    900;
+}
+
+.banner.success{
+  display:block;
+
+  border:
+    2px solid
+    #23cf79;
+
+  background:
+    rgba(
+      35,
+      207,
+      121,
+      .12
+    );
+}
+
+.banner.cancelled{
+  display:block;
+
+  border:
+    2px solid
+    var(--yellow);
+
+  background:
+    rgba(
+      255,
+      212,
+      38,
+      .1
+    );
+}
+
+.footer{
+  margin-top:
+    30px;
+
+  text-align:
+    center;
+
+  color:
+    var(--yellow);
+
+  font-weight:
+    1000;
+
+  letter-spacing:
+    2px;
+}
+
+
+@media(max-width:850px){
+
+.checkout-box.active{
+  grid-template-columns:
+    100px
+    1fr;
+
+  gap:
+    9px 12px;
+}
+
+.checkout-donor,
+.checkout-pay{
+  grid-column:
+    1 / -1;
+}
+
+.ball-grid{
+  grid-template-columns:
+    repeat(
+      5,
+      1fr
+    );
+
+  gap:8px;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div id="fundraiser">
+
+
+<div class="header">
+
+<img
+  src="/ecb-logo.png"
+  class="logo"
+  alt="ECB Navy"
+>
+
+<h1 class="title">
+
+Road To
+<br>
+
+<span>
+Cooperstown
+</span>
+
+</h1>
+
+</div>
+
+
+<div class="player-select-card">
+
+<label
+  class="select-label"
+  for="playerSelect"
+>
+
+Select The Player You're Supporting
+
+</label>
+
+<select
+  id="playerSelect"
+  class="player-select"
+>
+
+<option value="knox-graham">
+#1 Knox Graham
+</option>
+
+<option value="ridge-crewss">
+#2 Ridge Crewss
+</option>
+
+<option value="sebastian-erhard">
+#5 Sebastian Erhard
+</option>
+
+<option value="miguel-garcia">
+#11 Miguel Garcia
+</option>
+
+<option value="alfonso-santiago">
+#12 Alfonso Santiago
+</option>
+
+<option value="cole-edgos">
+#17 Cole Edgos
+</option>
+
+<option value="ripken-knapp">
+#19 Ripken Knapp
+</option>
+
+<option value="isaac-cepeda">
+#22 Isaac Cepeda
+</option>
+
+<option value="journey-petersen">
+#23 Journey Petersen
+</option>
+
+<option value="jordan-santos">
+#24 Jordan Santos
+</option>
+
+<option value="josiah-colon">
+#27 Josiah Colon
+</option>
+
+<option value="mathias-bernal">
+#50 Mathias Bernal
+</option>
+
+<option value="christian-alicea">
+#99 Christian Alicea
+</option>
+
+</select>
+
+</div>
+
+
+<div
+  id="paymentBanner"
+  class="banner"
+></div>
+
+
+<div
+  id="playerName"
+  class="player-name"
+></div>
+
+
+<div class="subtitle">
+
+Help fill all 100 baseballs and make the Cooperstown dream a reality.
+
+</div>
+
+
+<div class="progress-card">
+
+<div class="progress-numbers">
+
+<span id="raisedText">
+$0 Raised
+</span>
+
+<span>
+$5,050 Goal
+</span>
+
+</div>
+
+
+<div class="progress-track">
+
+<div
+  id="progressFill"
+  class="progress-fill"
+></div>
+
+</div>
+
+</div>
+
+
+<div class="instructions">
+
+Choose
+<strong>
+one or more
+</strong>
+available baseballs.
+
+<br>
+
+Each baseball number equals its donation value.
+
+<br>
+
+<div class="example">
+
+Baseballs #7 + #19 + #47 = $73 donation
+
+</div>
+
+</div>
+
+
+<div
+  id="loading"
+  class="loading"
+>
+
+Loading fundraiser...
+
+</div>
+
+
+<div
+  id="ballGrid"
+  class="ball-grid"
+></div>
+
+
+<div class="general-card">
+
+<h2>
+Make A General Donation
+</h2>
+
+<p>
+
+Don't want to select a baseball?
+Make any donation amount below.
+
+</p>
+
+
+<select
+  id="generalPlayer"
+  class="general-select"
+>
+
+<option value="team">
+ECB Navy Team
+</option>
+
+<option value="knox-graham">
+#1 Knox Graham
+</option>
+
+<option value="ridge-crewss">
+#2 Ridge Crewss
+</option>
+
+<option value="sebastian-erhard">
+#5 Sebastian Erhard
+</option>
+
+<option value="miguel-garcia">
+#11 Miguel Garcia
+</option>
+
+<option value="alfonso-santiago">
+#12 Alfonso Santiago
+</option>
+
+<option value="cole-edgos">
+#17 Cole Edgos
+</option>
+
+<option value="ripken-knapp">
+#19 Ripken Knapp
+</option>
+
+<option value="isaac-cepeda">
+#22 Isaac Cepeda
+</option>
+
+<option value="journey-petersen">
+#23 Journey Petersen
+</option>
+
+<option value="jordan-santos">
+#24 Jordan Santos
+</option>
+
+<option value="josiah-colon">
+#27 Josiah Colon
+</option>
+
+<option value="mathias-bernal">
+#50 Mathias Bernal
+</option>
+
+<option value="christian-alicea">
+#99 Christian Alicea
+</option>
+
+</select>
+
+
+<input
+  id="generalAmount"
+  class="general-input"
+  type="number"
+  min="1"
+  step="1"
+  placeholder="Donation Amount $"
+>
+
+
+<input
+  id="generalDonor"
+  class="general-input"
+  type="text"
+  maxlength="80"
+  placeholder="Name to display"
+>
+
+
+<label class="anonymous">
+
+<input
+  id="generalAnonymous"
+  type="checkbox"
+>
+
+Remain Anonymous
+
+</label>
+
+
+<button
+  id="generalButton"
+  class="general-button"
+>
+
+Make General Donation
+
+</button>
+
+
+<div
+  id="generalStatus"
+  class="status"
+></div>
+
+</div>
+
+
+<div class="footer">
+
+ECB NAVY • ROAD TO COOPERSTOWN
+
+</div>
+
+
+<div
+  id="checkoutBox"
+  class="checkout-box"
+>
+
+<div>
+
+<div>
+Your Selection
+</div>
+
+<div
+  id="checkoutAmount"
+  class="amount"
+>
+$0
+</div>
+
+<div id="selectedCount">
+</div>
+
+</div>
+
+
+<div
+  id="checkoutDetail"
+  class="detail"
+></div>
+
+
+<div class="checkout-donor">
+
+<input
+  id="donorName"
+  class="donor-input"
+  placeholder="Name to display"
+  maxlength="80"
+>
+
+<label class="anonymous">
+
+<input
+  id="anonymous"
+  type="checkbox"
+>
+
+Remain Anonymous
+
+</label>
+
+</div>
+
+
+<div class="checkout-pay">
+
+<button
+  id="payButton"
+  class="pay-button"
+>
+
+Pay Securely With Stripe
+
+</button>
+
+<div
+  id="checkoutStatus"
+  class="status"
+></div>
+
+<button
+  id="clearButton"
+  class="clear"
+>
+
+Clear Selections
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const players = {
+
+"knox-graham":{
+  name:"Knox Graham",
+  number:1
+},
+
+"ridge-crewss":{
+  name:"Ridge Crewss",
+  number:2
+},
+
+"sebastian-erhard":{
+  name:"Sebastian Erhard",
+  number:5
+},
+
+"miguel-garcia":{
+  name:"Miguel Garcia",
+  number:11
+},
+
+"alfonso-santiago":{
+  name:"Alfonso Santiago",
+  number:12
+},
+
+"cole-edgos":{
+  name:"Cole Edgos",
+  number:17
+},
+
+"ripken-knapp":{
+  name:"Ripken Knapp",
+  number:19
+},
+
+"isaac-cepeda":{
+  name:"Isaac Cepeda",
+  number:22
+},
+
+"journey-petersen":{
+  name:"Journey Petersen",
+  number:23
+},
+
+"jordan-santos":{
+  name:"Jordan Santos",
+  number:24
+},
+
+"josiah-colon":{
+  name:"Josiah Colon",
+  number:27
+},
+
+"mathias-bernal":{
+  name:"Mathias Bernal",
+  number:50
+},
+
+"christian-alicea":{
+  name:"Christian Alicea",
+  number:99
+}
+
+};
+
+
+const playerSelect =
+document.getElementById(
+  "playerSelect"
+);
+
+const playerName =
+document.getElementById(
+  "playerName"
+);
+
+const ballGrid =
+document.getElementById(
+  "ballGrid"
+);
+
+const loading =
+document.getElementById(
+  "loading"
+);
+
+const raisedText =
+document.getElementById(
+  "raisedText"
+);
+
+const progressFill =
+document.getElementById(
+  "progressFill"
+);
+
+const checkoutBox =
+document.getElementById(
+  "checkoutBox"
+);
+
+const checkoutAmount =
+document.getElementById(
+  "checkoutAmount"
+);
+
+const checkoutDetail =
+document.getElementById(
+  "checkoutDetail"
+);
+
+const selectedCount =
+document.getElementById(
+  "selectedCount"
+);
+
+const donorName =
+document.getElementById(
+  "donorName"
+);
+
+const anonymous =
+document.getElementById(
+  "anonymous"
+);
+
+const payButton =
+document.getElementById(
+  "payButton"
+);
+
+const checkoutStatus =
+document.getElementById(
+  "checkoutStatus"
+);
+
+const paymentBanner =
+document.getElementById(
+  "paymentBanner"
+);
+
+
+let currentPlayer = null;
+
+let currentPlayerKey =
+"knox-graham";
+
+let baseballs = [];
+
+let selected =
+new Set();
+
+
+function getStartingPlayer(){
+
+const params =
+new URLSearchParams(
+  window.location.search
+);
+
+const urlPlayer =
+params.get(
+  "player"
+);
+
+if(
+  urlPlayer &&
+  players[urlPlayer]
+){
+  return urlPlayer;
+}
+
+try{
+
+const saved =
+localStorage.getItem(
+  "ecbSelectedPlayer"
+);
+
+if(
+  saved &&
+  players[saved]
+){
+  return saved;
+}
+
+}catch(error){}
+
+return "knox-graham";
+
+}
+
+
+function updateURL(){
+
+const url =
+new URL(
+  window.location.href
+);
+
+url.searchParams.set(
+  "player",
+  currentPlayerKey
+);
+
+history.replaceState(
+  {},
+  "",
+  url
+);
+
+}
+
+
+async function loadFundraiser(){
+
+selected.clear();
+
+updateCheckout();
+
+loading.style.display =
+"block";
+
+ballGrid.innerHTML =
+"";
+
+currentPlayerKey =
+playerSelect.value;
+
+currentPlayer =
+players[
+  currentPlayerKey
+];
+
+playerName.textContent =
+`#${currentPlayer.number} ${currentPlayer.name}`;
+
+try{
+
+localStorage.setItem(
+  "ecbSelectedPlayer",
+  currentPlayerKey
+);
+
+}catch(error){}
+
+updateURL();
+
+try{
+
+const response =
+await fetch(
+  `/api/fundraiser?player=${encodeURIComponent(
+    currentPlayerKey
+  )}&t=${Date.now()}`,
+  {
+    cache:"no-store"
+  }
+);
+
+const data =
+await response.json();
+
+if(
+  !response.ok ||
+  !data.success
+){
+
+throw new Error(
+  data.error ||
+  "Unable to load fundraiser."
+);
+
+}
+
+baseballs =
+data.baseballs || [];
+
+currentPlayer =
+data.player;
+
+playerName.textContent =
+`#${currentPlayer.number} ${currentPlayer.name}`;
+
+const raised =
+Number(
+  data.totals
+    ?.raisedDollars ||
+  0
+);
+
+raisedText.textContent =
+`$${raised.toLocaleString()} Raised`;
+
+progressFill.style.width =
+`${Math.min(
+  100,
+  raised / 5050 * 100
+)}%`;
+
+renderBoard();
+
+loading.style.display =
+"none";
+
+}catch(error){
+
+loading.textContent =
+error.message ||
+"Unable to load fundraiser.";
+
+}
+
+}
+
+
+function renderBoard(){
+
+ballGrid.innerHTML =
+"";
+
+baseballs.forEach(
+ball => {
+
+const number =
+Number(
+  ball.ball_number
+);
+
+const card =
+document.createElement(
+  "div"
+);
+
+card.className =
+"ball-card";
+
+
+const button =
+document.createElement(
+  "button"
+);
+
+button.type =
+"button";
+
+button.className =
+"ball";
+
+
+const span =
+document.createElement(
+  "span"
+);
+
+
+if(
+  ball.status ===
+  "sold"
+){
+
+button.classList.add(
+  "sold"
+);
+
+button.disabled =
+true;
+
+span.innerHTML =
+`${number}<br><small>SOLD</small>`;
+
+const donor =
+document.createElement(
+  "div"
+);
+
+donor.className =
+"donor-label";
+
+donor.textContent =
+ball.donor_name ||
+"Anonymous";
+
+card.appendChild(
+  button
+);
+
+card.appendChild(
+  donor
+);
+
+}else{
+
+span.textContent =
+number;
+
+if(
+  selected.has(
+    number
+  )
+){
+
+button.classList.add(
+  "selected"
+);
+
+}
+
+button.addEventListener(
+  "click",
+  () => {
+
+    if(
+      selected.has(
+        number
+      )
+    ){
+
+      selected.delete(
+        number
+      );
+
+    }else{
+
+      selected.add(
+        number
+      );
+
+    }
+
+    renderBoard();
+
+    updateCheckout();
+
+  }
+);
+
+card.appendChild(
+  button
+);
+
+}
+
+
+button.appendChild(
+  span
+);
+
+ballGrid.appendChild(
+  card
+);
+
+});
+
+}
+
+
+function updateCheckout(){
+
+const numbers =
+Array.from(
+  selected
+).sort(
+  (a,b) =>
+    a-b
+);
+
+if(
+  numbers.length ===
+  0
+){
+
+checkoutBox.classList.remove(
+  "active"
+);
+
+return;
+
+}
+
+const total =
+numbers.reduce(
+  (sum,n) =>
+    sum+n,
+  0
+);
+
+checkoutAmount.textContent =
+`$${total}`;
+
+selectedCount.textContent =
+numbers.length === 1
+  ? "1 Baseball Selected"
+  : `${numbers.length} Baseballs Selected`;
+
+checkoutDetail.textContent =
+`#${currentPlayer.number} ${currentPlayer.name} • #${numbers.join(", #")}`;
+
+checkoutBox.classList.add(
+  "active"
+);
+
+}
+
+
+anonymous.addEventListener(
+"change",
+() => {
+
+if(
+  anonymous.checked
+){
+
+donorName.value =
+"";
+
+donorName.disabled =
+true;
+
+donorName.placeholder =
+"Anonymous";
+
+}else{
+
+donorName.disabled =
+false;
+
+donorName.placeholder =
+"Name to display";
+
+}
+
+}
+);
+
+
+document
+.getElementById(
+  "clearButton"
+)
+.addEventListener(
+"click",
+() => {
+
+selected.clear();
+
+renderBoard();
+
+updateCheckout();
+
+}
+);
+
+
+payButton.addEventListener(
+"click",
+async () => {
+
+if(
+  !selected.size
+){
+  return;
+}
+
+let name;
+
+if(
+  anonymous.checked
+){
+
+name =
+"Anonymous";
+
+}else{
+
+name =
+donorName.value
+.trim()
+.replace(
+  /\s+/g,
+  " "
+);
+
+if(
+  !name
+){
+
+checkoutStatus.textContent =
+"Enter a donor name or choose Anonymous.";
+
+donorName.focus();
+
+return;
+
+}
+
+}
+
+payButton.disabled =
+true;
+
+payButton.textContent =
+"Creating Checkout...";
+
+checkoutStatus.textContent =
+"Preparing secure checkout...";
+
+try{
+
+const response =
+await fetch(
+  "/api/create-checkout",
+  {
+
+    method:"POST",
+
+    headers:{
+      "Content-Type":
+      "application/json"
+    },
+
+    body:
+    JSON.stringify({
+
+      type:
+      "baseballs",
+
+      playerKey:
+      currentPlayerKey,
+
+      baseballs:
+      Array.from(
+        selected
+      ),
+
+      donorName:
+      name,
+
+      anonymous:
+      anonymous.checked
+
+    })
+
+  }
+);
+
+const data =
+await response.json();
+
+if(
+  !response.ok ||
+  !data.url
+){
+
+throw new Error(
+  data.error ||
+  "Unable to create checkout."
+);
+
+}
+
+window.location.href =
+data.url;
+
+}catch(error){
+
+checkoutStatus.textContent =
+error.message;
+
+payButton.disabled =
+false;
+
+payButton.textContent =
+"Pay Securely With Stripe";
+
+}
+
+}
+);
+
+
+/*
+GENERAL DONATIONS
+*/
+
+const generalPlayer =
+document.getElementById(
+  "generalPlayer"
+);
+
+const generalAmount =
+document.getElementById(
+  "generalAmount"
+);
+
+const generalDonor =
+document.getElementById(
+  "generalDonor"
+);
+
+const generalAnonymous =
+document.getElementById(
+  "generalAnonymous"
+);
+
+const generalButton =
+document.getElementById(
+  "generalButton"
+);
+
+const generalStatus =
+document.getElementById(
+  "generalStatus"
+);
+
+
+generalAnonymous.addEventListener(
+"change",
+() => {
+
+if(
+  generalAnonymous.checked
+){
+
+generalDonor.value =
+"";
+
+generalDonor.disabled =
+true;
+
+generalDonor.placeholder =
+"Anonymous";
+
+}else{
+
+generalDonor.disabled =
+false;
+
+generalDonor.placeholder =
+"Name to display";
+
+}
+
+}
+);
+
+
+generalButton.addEventListener(
+"click",
+async () => {
+
+const amount =
+Number(
+  generalAmount.value
+);
+
+if(
+  !Number.isFinite(
+    amount
+  ) ||
+  amount < 1
+){
+
+generalStatus.textContent =
+"Enter a valid donation amount.";
+
+return;
+
+}
+
+
+let name;
+
+if(
+  generalAnonymous.checked
+){
+
+name =
+"Anonymous";
+
+}else{
+
+name =
+generalDonor.value
+.trim()
+.replace(
+  /\s+/g,
+  " "
+);
+
+if(
+  !name
+){
+
+generalStatus.textContent =
+"Enter a donor name or choose Anonymous.";
+
+generalDonor.focus();
+
+return;
+
+}
+
+}
+
+
+generalButton.disabled =
+true;
+
+generalButton.textContent =
+"Creating Checkout...";
+
+generalStatus.textContent =
+"Preparing secure checkout...";
+
+
+try{
+
+const response =
+await fetch(
+  "/api/create-checkout",
+  {
+
+    method:"POST",
+
+    headers:{
+      "Content-Type":
+      "application/json"
+    },
+
+    body:
+    JSON.stringify({
+
+      type:
+      "general",
+
+      playerKey:
+      generalPlayer.value,
+
+      amount,
+
+      donorName:
+      name,
+
+      anonymous:
+      generalAnonymous.checked
+
+    })
+
+  }
+);
+
+
+const data =
+await response.json();
+
+
+if(
+  !response.ok ||
+  !data.url
+){
+
+throw new Error(
+  data.error ||
+  "Unable to create checkout."
+);
+
+}
+
+
+window.location.href =
+data.url;
+
+
+}catch(error){
+
+generalStatus.textContent =
+error.message;
+
+generalButton.disabled =
+false;
+
+generalButton.textContent =
+"Make General Donation";
+
+}
+
+}
+);
+
+
+/*
+PAYMENT RETURN
+*/
+
+async function handlePaymentReturn(){
+
+const params =
+new URLSearchParams(
+  window.location.search
+);
+
+const payment =
+params.get(
+  "payment"
+);
+
+const sessionId =
+params.get(
+  "session_id"
+);
+
+
+if(
+  payment ===
+  "cancelled"
+){
+
+paymentBanner.className =
+"banner cancelled";
+
+paymentBanner.textContent =
+"Payment was cancelled.";
+
+return;
+
+}
+
+
+if(
+  payment !==
+  "success"
+){
+
+return;
+
+}
+
+
+paymentBanner.className =
+"banner success";
+
+paymentBanner.textContent =
+"Payment received. Confirming your donation...";
+
+
+if(
+  !sessionId
+){
+
+paymentBanner.textContent =
+"Payment received.";
+
+return;
+
+}
+
+
+try{
+
+const response =
+await fetch(
+  `/api/verify-payment?session_id=${encodeURIComponent(
+    sessionId
+  )}`,
+  {
+    cache:"no-store"
+  }
+);
+
+const data =
+await response.json();
+
+
+if(
+  !response.ok ||
+  !data.success
+){
+
+throw new Error(
+  data.error ||
+  "Unable to verify payment."
+);
+
+}
+
+
+paymentBanner.textContent =
+"Thank you! Your payment was received and the fundraiser has been updated.";
+
+
+await loadFundraiser();
+
+
+}catch(error){
+
+paymentBanner.textContent =
+"Payment received. The fundraiser may take a moment to update.";
+
+}
+
+}
+
+
+/*
+INITIALIZE
+*/
+
+currentPlayerKey =
+getStartingPlayer();
+
+playerSelect.value =
+currentPlayerKey;
+
+generalPlayer.value =
+currentPlayerKey;
+
+loadFundraiser();
+
+handlePaymentReturn();
+
+
+playerSelect.addEventListener(
+"change",
+async () => {
+
+currentPlayerKey =
+playerSelect.value;
+
+generalPlayer.value =
+currentPlayerKey;
+
+await loadFundraiser();
+
+}
+);
+
+</script>
+
+</body>
+
+</html>
