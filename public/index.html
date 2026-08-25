@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+ECB Navy | Road to Cooperstown
+</title>
+
+<style>
+
+html,
+body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  background:#07182e;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  color:#fff;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+.page{
+  min-height:100vh;
+  padding:35px 18px 60px;
+
+  background:
+    radial-gradient(
+      circle at top,
+      #163c68 0%,
+      #0c284b 34%,
+      #07182e 68%,
+      #030a14 100%
+    );
+}
+
+.wrap{
+  width:min(1120px,100%);
+  margin:0 auto;
+}
+
+.header{
+  text-align:center;
+}
+
+.logo{
+  width:min(430px,88%);
+  height:auto;
+  margin:0 auto 20px;
+  display:block;
+
+  filter:
+    drop-shadow(
+      0 9px 16px
+      rgba(0,0,0,.4)
+    );
+}
+
+.road{
+  margin:0;
+
+  font-size:
+    clamp(
+      40px,
+      8vw,
+      74px
+    );
+
+  line-height:.92;
+
+  font-weight:1000;
+
+  font-style:italic;
+
+  text-transform:
+    uppercase;
+
+  text-shadow:
+    3px 3px 0 #8a6f00,
+    6px 6px 0 rgba(0,0,0,.4);
+}
+
+.road span{
+  color:#ffd426;
+}
+
+.subhead{
+  max-width:760px;
+  margin:20px auto 0;
+
+  font-size:17px;
+  line-height:1.5;
+
+  color:#dce7f3;
+}
+
+.choose{
+  margin:38px 0 24px;
+
+  text-align:center;
+
+  color:#ffd426;
+
+  font-weight:1000;
+
+  letter-spacing:3px;
+
+  text-transform:
+    uppercase;
+}
+
+.grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(0,1fr)
+    );
+
+  gap:18px;
+}
+
+.player-card{
+  min-height:225px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:20px 12px;
+
+  border:
+    2px solid
+    rgba(
+      255,
+      212,
+      38,
+      .75
+    );
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(17,53,94,.95),
+      rgba(4,17,35,.98)
+    );
+
+  color:#fff;
+
+  text-decoration:none;
+
+  box-shadow:
+    0 12px 30px
+    rgba(0,0,0,.35);
+
+  transition:.18s ease;
+}
+
+.player-card:hover{
+  transform:
+    translateY(-5px);
+
+  border-color:
+    #fff09a;
+}
+
+.baseball{
+  font-size:70px;
+  margin-bottom:12px;
+}
+
+.number{
+  color:#ffd426;
+
+  font-size:16px;
+
+  font-weight:1000;
+
+  margin-bottom:7px;
+}
+
+.name{
+  text-align:center;
+
+  font-size:19px;
+
+  font-weight:1000;
+
+  line-height:1.15;
+
+  text-transform:
+    uppercase;
+}
+
+.footer{
+  margin-top:38px;
+
+  text-align:center;
+
+  color:#ffd426;
+
+  font-weight:900;
+
+  letter-spacing:2px;
+}
+
+@media(max-width:900px){
+
+  .grid{
+    grid-template-columns:
+      repeat(
+        3,
+        1fr
+      );
+  }
+
+}
+
+@media(max-width:680px){
+
+  .grid{
+    grid-template-columns:
+      repeat(
+        2,
+        1fr
+      );
+
+    gap:12px;
+  }
+
+  .player-card{
+    min-height:190px;
+  }
+
+  .baseball{
+    font-size:54px;
+  }
+
+  .name{
+    font-size:15px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+<div class="wrap">
+
+<header class="header">
+
+<img
+  src="/ecb-logo.png"
+  class="logo"
+  alt="ECB Navy Baseball"
+>
+
+<h1 class="road">
+Road To
+<br>
+<span>
+Cooperstown
+</span>
+</h1>
+
+<div class="subhead">
+
+Choose the ECB Navy player you want to support.
+
+Pick one or more baseballs from their individual
+1–100 fundraiser board.
+
+</div>
+
+</header>
+
+
+<div class="choose">
+
+Select A Player To Support
+
+</div>
+
+
+<main class="grid">
+
+<a
+  class="player-card"
+  href="/fundraiser.html?player=knox-graham"
+>
+<div class="baseball">⚾</div>
+<div class="number">#1</div>
+<div class="name">Knox Graham</div>
+</a>
+
+
+<a
+  class="player-card"
+  href="/fundraiser.html?player=ridge-crewss"
+>
+<div class="baseball">⚾</div>
+<div class="number">#2</div>
+<div class="name">Ridge Crewss</div>
+</a>
+
+
+<a
+  class="player-card"
+  href="/fundraiser.html?player=sebastian-erhard"
+>
+<div class="baseball">⚾</div>
+<div class="number">#5</div>
+<div class="name">Sebastian Erhard</div>
+</a>
+
+
+<a
+  class="player-card"
+  href="/fundraiser.html?player=miguel-garcia"
+>
+<div class="baseball">⚾</div>
+<div class="number">#11</div>
+<div class="name">Miguel Garcia</div>
+</a>
+
+
+<a
+  class="player-card"
+  href="/fundraiser.html?player=alfonso-santiago"
+>
+<div class="baseball">⚾</div>
+<div class="number">#12</div>
+<div class="name">Alfonso Santiago</div>
+</a>
+
+
+<a
+  class="player-card"
+  href="/fundraiser.html?player=cole-edgos"
+>
+<div class="baseball">⚾</div>
+<div class="number">#17</div>
+<div class="name">Cole Edgos</div>
+</a>
+
+
+<a
+  class="player-card"
+  href="/fundraiser.html?player=ripken-knapp"
+>
+<div class="baseball">⚾</div>
+<div class="number">#19</div>
+<div class="name">Ripken Knapp</div>
+</a>
+
+
+<a
+  class="player-card"
+  href="/fundraiser.html?player=isaac-cepeda"
+>
+<div class="baseball">⚾</div>
+<div class="number">#22</div>
+<div class="name">Isaac Cepeda</div>
+</a>
+
+
+<a
+  class="player-card"
+  href="/fundraiser.html?player=journey-petersen"
+>
+<div class="baseball">⚾</div>
+<div class="number">#23</div>
+<div class="name">Journey Petersen</div>
+</a>
+
+
+<a
+  class="player-card"
+  href="/fundraiser.html?player=jordan-santos"
+>
+<div class="baseball">⚾</div>
+<div class="number">#24</div>
+<div class="name">Jordan Santos</div>
+</a>
+
+
+<a
+  class="player-card"
+  href="/fundraiser.html?player=josiah-colon"
+>
+<div class="baseball">⚾</div>
+<div class="number">#27</div>
+<div class="name">Josiah Colon</div>
+</a>
+
+
+<a
+  class="player-card"
+  href="/fundraiser.html?player=mathias-bernal"
+>
+<div class="baseball">⚾</div>
+<div class="number">#50</div>
+<div class="name">Mathias Bernal</div>
+</a>
+
+
+<a
+  class="player-card"
+  href="/fundraiser.html?player=christian-alicea"
+>
+<div class="baseball">⚾</div>
+<div class="number">#99</div>
+<div class="name">Christian Alicea</div>
+</a>
+
+</main>
+
+
+<div class="footer">
+
+ECB NAVY • ROAD TO COOPERSTOWN
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
