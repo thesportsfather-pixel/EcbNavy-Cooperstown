@@ -32,6 +32,70 @@ async function supabaseGet(env, path) {
   return text ? JSON.parse(text) : [];
 }
 
+async function createStripeSession(
+  env,
+  params
+) {
+  const stripeResponse = await fetch(
+    "https://api.stripe.com/v1/checkout/sessions",
+    {
+      method: "POST",
+
+      headers: {
+        authorization:
+          `Bearer ${env.STRIPE_SECRET_KEY}`,
+
+        "content-type":
+          "application/x-www-form-urlencoded",
+
+        accept:
+          "application/json",
+      },
+
+      body:
+        params.toString(),
+    }
+  );
+
+  const stripeText =
+    await stripeResponse.text();
+
+  let session;
+
+  try {
+    session =
+      JSON.parse(stripeText);
+  } catch {
+    return json(
+      {
+        success: false,
+        error:
+          "Stripe returned invalid data.",
+      },
+      500
+    );
+  }
+
+  if (!stripeResponse.ok) {
+    return json(
+      {
+        success: false,
+
+        error:
+          session?.error?.message ||
+          "Unable to create Stripe checkout.",
+      },
+      stripeResponse.status
+    );
+  }
+
+  return json({
+    success: true,
+    url: session.url,
+    sessionId: session.id,
+  });
+}
+
 export async function onRequestPost({
   request,
   env,
@@ -51,7 +115,8 @@ export async function onRequestPost({
       );
     }
 
-    const body = await request.json();
+    const body =
+      await request.json();
 
     const type =
       body.type === "general"
@@ -68,8 +133,12 @@ export async function onRequestPost({
             .replace(/\s+/g, " ")
         : "";
 
-    if (anonymous || !donorName) {
-      donorName = "Anonymous";
+    if (
+      anonymous ||
+      !donorName
+    ) {
+      donorName =
+        "Anonymous";
     }
 
     if (
@@ -79,6 +148,7 @@ export async function onRequestPost({
       return json(
         {
           success: false,
+
           error:
             "Please enter a donor name or choose Anonymous.",
         },
@@ -86,20 +156,43 @@ export async function onRequestPost({
       );
     }
 
-    const origin = new URL(
-      request.url
-    ).origin;
+    /*
+    ==========================================
+    FIND ECB NAVY TEAM
+    ==========================================
+    */
+
+    const teams = await supabaseGet(
+      env,
+      `teams?team_key=eq.ecb-navy-cooperstown&select=id,team_key,team_name&limit=1`
+    );
+
+    if (!teams.length) {
+      return json(
+        {
+          success: false,
+          error: "ECB Navy team was not found.",
+        },
+        404
+      );
+    }
+
+    const team = teams[0];
+
+    const origin =
+      new URL(
+        request.url
+      ).origin;
 
     /*
-    ========================================
+    ==========================================
     GENERAL DONATION
-    ========================================
+    ==========================================
     */
 
     if (type === "general") {
-      const amount = Number(
-        body.amount
-      );
+      const amount =
+        Number(body.amount);
 
       if (
         !Number.isFinite(amount) ||
@@ -109,6 +202,7 @@ export async function onRequestPost({
         return json(
           {
             success: false,
+
             error:
               "Please enter a valid donation amount.",
           },
@@ -116,32 +210,50 @@ export async function onRequestPost({
         );
       }
 
-      const amountCents = Math.round(
-        amount * 100
-      );
+      const amountCents =
+        Math.round(
+          amount * 100
+        );
 
-      const playerKey =
+      const requestedPlayerKey =
         typeof body.playerKey === "string"
           ? body.playerKey.trim()
-          : "";
+          : "team";
 
       let player = null;
 
+      /*
+      If donor selected a player,
+      find that player under ECB Navy.
+      */
+
       if (
-        playerKey &&
-        playerKey !== "team"
+        requestedPlayerKey &&
+        requestedPlayerKey !== "team"
       ) {
         const players =
           await supabaseGet(
             env,
-            `players?team_key=eq.ecb-navy-cooperstown&player_key=eq.${encodeURIComponent(
-              playerKey
-            )}&select=id,player_key,player_name,player_number&limit=1`
+
+            `players?team_id=eq.${encodeURIComponent(
+              team.id
+            )}&player_key=eq.${encodeURIComponent(
+              requestedPlayerKey
+            )}&select=id,player_key,player_name,player_number,team_id&limit=1`
           );
 
-        if (players.length) {
-          player = players[0];
+        if (!players.length) {
+          return json(
+            {
+              success: false,
+              error: "Player not found.",
+            },
+            404
+          );
         }
+
+        player =
+          players[0];
       }
 
       const params =
@@ -152,26 +264,35 @@ export async function onRequestPost({
         "payment"
       );
 
+      let successUrl;
+      let cancelUrl;
+
+      if (player) {
+        successUrl =
+          `${origin}/fundraiser.html?player=${encodeURIComponent(
+            player.player_key
+          )}&payment=success&session_id={CHECKOUT_SESSION_ID}`;
+
+        cancelUrl =
+          `${origin}/fundraiser.html?player=${encodeURIComponent(
+            player.player_key
+          )}&payment=cancelled`;
+      } else {
+        successUrl =
+          `${origin}/fundraiser.html?payment=success&session_id={CHECKOUT_SESSION_ID}`;
+
+        cancelUrl =
+          `${origin}/fundraiser.html?payment=cancelled`;
+      }
+
       params.set(
         "success_url",
-        `${origin}/fundraiser.html${
-          player
-            ? `?player=${encodeURIComponent(
-                player.player_key
-              )}&`
-            : "?"
-        }payment=success&session_id={CHECKOUT_SESSION_ID}`
+        successUrl
       );
 
       params.set(
         "cancel_url",
-        `${origin}/fundraiser.html${
-          player
-            ? `?player=${encodeURIComponent(
-                player.player_key
-              )}&`
-            : "?"
-        }payment=cancelled`
+        cancelUrl
       );
 
       params.set(
@@ -182,13 +303,15 @@ export async function onRequestPost({
       params.set(
         "line_items[0][price_data][product_data][name]",
         player
-          ? `ECB Navy Cooperstown - ${player.player_name}`
-          : "ECB Navy Cooperstown - Team Donation"
+          ? `ECB Navy Road to Cooperstown - ${player.player_name}`
+          : "ECB Navy Road to Cooperstown - Team Donation"
       );
 
       params.set(
         "line_items[0][price_data][product_data][description]",
-        `General Donation • Donor: ${donorName}`
+        player
+          ? `General donation supporting #${player.player_number} ${player.player_name} • Donor: ${donorName}`
+          : `General ECB Navy team donation • Donor: ${donorName}`
       );
 
       params.set(
@@ -201,9 +324,18 @@ export async function onRequestPost({
         "1"
       );
 
+      /*
+      STRIPE METADATA
+      */
+
       params.set(
         "metadata[team_key]",
         "ecb-navy-cooperstown"
+      );
+
+      params.set(
+        "metadata[team_id]",
+        String(team.id)
       );
 
       params.set(
@@ -213,7 +345,9 @@ export async function onRequestPost({
 
       params.set(
         "metadata[player_id]",
-        player ? String(player.id) : ""
+        player
+          ? String(player.id)
+          : ""
       );
 
       params.set(
@@ -228,6 +362,15 @@ export async function onRequestPost({
         player
           ? player.player_name
           : "ECB Navy Team"
+      );
+
+      params.set(
+        "metadata[player_number]",
+        player
+          ? String(
+              player.player_number ?? ""
+            )
+          : ""
       );
 
       params.set(
@@ -252,9 +395,9 @@ export async function onRequestPost({
     }
 
     /*
-    ========================================
+    ==========================================
     BASEBALL PURCHASE
-    ========================================
+    ==========================================
     */
 
     const playerKey =
@@ -278,7 +421,10 @@ export async function onRequestPost({
                 number <= 100
             )
         )
-      ).sort((a, b) => a - b);
+      ).sort(
+        (a, b) =>
+          a - b
+      );
 
     if (
       !playerKey ||
@@ -287,6 +433,7 @@ export async function onRequestPost({
       return json(
         {
           success: false,
+
           error:
             "A player and at least one baseball are required.",
         },
@@ -294,12 +441,19 @@ export async function onRequestPost({
       );
     }
 
+    /*
+    FIND PLAYER THROUGH team_id
+    */
+
     const players =
       await supabaseGet(
         env,
-        `players?team_key=eq.ecb-navy-cooperstown&player_key=eq.${encodeURIComponent(
+
+        `players?team_id=eq.${encodeURIComponent(
+          team.id
+        )}&player_key=eq.${encodeURIComponent(
           playerKey
-        )}&select=id,player_key,player_name,player_number&limit=1`
+        )}&select=id,player_key,player_name,player_number,team_id&limit=1`
       );
 
     if (!players.length) {
@@ -312,16 +466,22 @@ export async function onRequestPost({
       );
     }
 
-    const player = players[0];
+    const player =
+      players[0];
+
+    /*
+    LOAD SELECTED BASEBALLS
+    */
 
     const baseballs =
       await supabaseGet(
         env,
+
         `baseballs?player_id=eq.${encodeURIComponent(
           player.id
         )}&ball_number=in.(${baseballNumbers.join(
           ","
-        )})&select=ball_number,amount_cents,status`
+        )})&select=id,ball_number,amount_cents,status`
       );
 
     if (
@@ -331,6 +491,7 @@ export async function onRequestPost({
       return json(
         {
           success: false,
+
           error:
             "One or more selected baseballs could not be found.",
         },
@@ -338,53 +499,97 @@ export async function onRequestPost({
       );
     }
 
+    /*
+    CHECK AVAILABILITY
+    */
+
     const unavailable =
       baseballs.filter(
         (ball) =>
-          ball.status !== "available"
+          ball.status !==
+          "available"
       );
 
     if (unavailable.length) {
+      const unavailableNumbers =
+        unavailable
+          .map(
+            (ball) =>
+              Number(
+                ball.ball_number
+              )
+          )
+          .sort(
+            (a, b) =>
+              a - b
+          );
+
       return json(
         {
           success: false,
 
           error:
             `Baseball${
-              unavailable.length === 1
+              unavailableNumbers.length === 1
                 ? ""
                 : "s"
-            } #${unavailable
-              .map(
-                (ball) =>
-                  ball.ball_number
-              )
-              .join(
-                ", #"
-              )} ${
-              unavailable.length === 1
+            } #${unavailableNumbers.join(
+              ", #"
+            )} ${
+              unavailableNumbers.length === 1
                 ? "is"
                 : "are"
-            } no longer available.`,
+            } no longer available. Please refresh the board.`,
         },
         409
       );
     }
 
+    /*
+    SERVER CALCULATES TOTAL
+    NEVER TRUST BROWSER AMOUNT
+    */
+
     const amountCents =
       baseballs.reduce(
-        (sum, ball) =>
-          sum +
-          (
+        (total, ball) => {
+          const number =
+            Number(
+              ball.ball_number
+            );
+
+          const amount =
             Number(
               ball.amount_cents
             ) ||
-            Number(
-              ball.ball_number
-            ) * 100
-          ),
+            number * 100;
+
+          return (
+            total +
+            amount
+          );
+        },
         0
       );
+
+    if (
+      !Number.isInteger(amountCents) ||
+      amountCents < 100
+    ) {
+      return json(
+        {
+          success: false,
+          error: "Invalid checkout amount.",
+        },
+        400
+      );
+    }
+
+    /*
+    ==========================================
+    CREATE STRIPE CHECKOUT
+    ==========================================
+    */
 
     const params =
       new URLSearchParams();
@@ -396,15 +601,17 @@ export async function onRequestPost({
 
     params.set(
       "success_url",
+
       `${origin}/fundraiser.html?player=${encodeURIComponent(
-        playerKey
+        player.player_key
       )}&payment=success&session_id={CHECKOUT_SESSION_ID}`
     );
 
     params.set(
       "cancel_url",
+
       `${origin}/fundraiser.html?player=${encodeURIComponent(
-        playerKey
+        player.player_key
       )}&payment=cancelled`
     );
 
@@ -415,11 +622,13 @@ export async function onRequestPost({
 
     params.set(
       "line_items[0][price_data][product_data][name]",
-      `ECB Navy - ${player.player_name}`
+
+      `ECB Navy Road to Cooperstown - #${player.player_number} ${player.player_name}`
     );
 
     params.set(
       "line_items[0][price_data][product_data][description]",
+
       `Baseballs #${baseballNumbers.join(
         ", #"
       )} • Donor: ${donorName}`
@@ -435,9 +644,20 @@ export async function onRequestPost({
       "1"
     );
 
+    /*
+    ==========================================
+    STRIPE METADATA
+    ==========================================
+    */
+
     params.set(
       "metadata[team_key]",
       "ecb-navy-cooperstown"
+    );
+
+    params.set(
+      "metadata[team_id]",
+      String(team.id)
     );
 
     params.set(
@@ -482,6 +702,11 @@ export async function onRequestPost({
       String(anonymous)
     );
 
+    params.set(
+      "metadata[amount_cents]",
+      String(amountCents)
+    );
+
     return await createStripeSession(
       env,
       params
@@ -495,6 +720,7 @@ export async function onRequestPost({
     return json(
       {
         success: false,
+
         error:
           error instanceof Error
             ? error.message
@@ -503,68 +729,4 @@ export async function onRequestPost({
       500
     );
   }
-}
-
-async function createStripeSession(
-  env,
-  params
-) {
-  const stripeResponse =
-    await fetch(
-      "https://api.stripe.com/v1/checkout/sessions",
-      {
-        method: "POST",
-
-        headers: {
-          authorization:
-            `Bearer ${env.STRIPE_SECRET_KEY}`,
-
-          "content-type":
-            "application/x-www-form-urlencoded",
-
-          accept:
-            "application/json",
-        },
-
-        body:
-          params.toString(),
-      }
-    );
-
-  const text =
-    await stripeResponse.text();
-
-  let session;
-
-  try {
-    session =
-      JSON.parse(text);
-  } catch {
-    return json(
-      {
-        success: false,
-        error:
-          "Stripe returned invalid data.",
-      },
-      500
-    );
-  }
-
-  if (!stripeResponse.ok) {
-    return json(
-      {
-        success: false,
-        error:
-          session?.error?.message ||
-          "Unable to create checkout.",
-      },
-      stripeResponse.status
-    );
-  }
-
-  return json({
-    success: true,
-    url: session.url,
-    sessionId: session.id,
-  });
 }
