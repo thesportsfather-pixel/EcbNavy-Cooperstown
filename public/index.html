@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
-<title>
-ECB Navy | Road to Cooperstown
-</title>
+<title>ECB Navy | Road to Cooperstown</title>
 
 <style>
-
-html,
-body{
+html,body{
   margin:0;
   padding:0;
   min-height:100%;
-  background:#07182e;
+  background:#061426;
 }
 
 body{
@@ -35,15 +25,14 @@ body{
 
 .page{
   min-height:100vh;
-  padding:35px 18px 60px;
-
+  padding:30px 18px 60px;
   background:
     radial-gradient(
       circle at top,
-      #163c68 0%,
-      #0c284b 34%,
-      #07182e 68%,
-      #030a14 100%
+      #234c7c 0%,
+      #102f55 30%,
+      #071a32 60%,
+      #020914 100%
     );
 }
 
@@ -52,45 +41,37 @@ body{
   margin:0 auto;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 .header{
   text-align:center;
+  padding-top:8px;
 }
 
 .logo{
+  display:block;
   width:min(430px,88%);
   height:auto;
-  margin:0 auto 20px;
-  display:block;
-
+  margin:0 auto 18px;
   filter:
     drop-shadow(
-      0 9px 16px
+      0 10px 20px
       rgba(0,0,0,.4)
     );
 }
 
 .road{
   margin:0;
-
-  font-size:
-    clamp(
-      40px,
-      8vw,
-      74px
-    );
-
-  line-height:.92;
-
+  font-size:clamp(42px,8vw,78px);
+  line-height:.9;
   font-weight:1000;
-
   font-style:italic;
-
-  text-transform:
-    uppercase;
-
+  text-transform:uppercase;
   text-shadow:
-    3px 3px 0 #8a6f00,
-    6px 6px 0 rgba(0,0,0,.4);
+    3px 3px 0 #8b7100,
+    6px 6px 0 rgba(0,0,0,.42);
 }
 
 .road span{
@@ -100,357 +81,881 @@ body{
 .subhead{
   max-width:760px;
   margin:20px auto 0;
-
+  color:#dce8f5;
   font-size:17px;
-  line-height:1.5;
-
-  color:#dce7f3;
+  line-height:1.55;
 }
 
-.choose{
-  margin:38px 0 24px;
-
-  text-align:center;
-
+.hero-note{
+  display:inline-block;
+  margin-top:18px;
+  padding:10px 16px;
+  border:1px solid rgba(255,212,38,.65);
+  border-radius:999px;
   color:#ffd426;
-
-  font-weight:1000;
-
-  letter-spacing:3px;
-
-  text-transform:
-    uppercase;
+  background:rgba(0,0,0,.2);
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
 }
+
+/* =========================
+   SECTION TITLES
+========================= */
+
+.section-kicker{
+  margin-top:42px;
+  text-align:center;
+  color:#ffd426;
+  font-size:13px;
+  font-weight:1000;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.section-title{
+  margin:8px 0 24px;
+  text-align:center;
+  font-size:32px;
+  font-weight:1000;
+  text-transform:uppercase;
+}
+
+/* =========================
+   PLAYER GRID
+========================= */
 
 .grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(
-      4,
-      minmax(0,1fr)
-    );
-
+  grid-template-columns:repeat(4,minmax(0,1fr));
   gap:18px;
 }
 
 .player-card{
-  min-height:225px;
-
   display:flex;
-
+  min-height:245px;
+  padding:22px 14px 18px;
   flex-direction:column;
-
   align-items:center;
-
   justify-content:center;
 
-  padding:20px 12px;
-
-  border:
-    2px solid
-    rgba(
-      255,
-      212,
-      38,
-      .75
-    );
-
+  border:2px solid rgba(255,212,38,.7);
   border-radius:20px;
 
   background:
     linear-gradient(
       180deg,
-      rgba(17,53,94,.95),
-      rgba(4,17,35,.98)
+      rgba(23,58,98,.95),
+      rgba(4,18,36,.98)
     );
 
   color:#fff;
-
   text-decoration:none;
 
   box-shadow:
-    0 12px 30px
-    rgba(0,0,0,.35);
+    0 12px 30px rgba(0,0,0,.35);
 
-  transition:.18s ease;
+  transition:
+    transform .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease;
 }
 
 .player-card:hover{
-  transform:
-    translateY(-5px);
-
-  border-color:
-    #fff09a;
+  transform:translateY(-5px);
+  border-color:#fff09a;
+  box-shadow:
+    0 18px 36px rgba(0,0,0,.45);
 }
 
 .baseball{
-  font-size:70px;
-  margin-bottom:12px;
+  width:112px;
+  height:112px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin-bottom:16px;
+
+  border-radius:50%;
+  border:3px solid #d8d8d8;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #fff 0%,
+      #f4f4f4 45%,
+      #d7d7d7 100%
+    );
+
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.38);
+
+  position:relative;
+  overflow:hidden;
 }
 
-.number{
+.baseball:before,
+.baseball:after{
+  content:"";
+  position:absolute;
+  width:38%;
+  height:72%;
+  border:2px dashed #cf2035;
+  border-top:none;
+  border-bottom:none;
+  border-radius:50%;
+  opacity:.78;
+}
+
+.baseball:before{
+  left:4%;
+}
+
+.baseball:after{
+  right:4%;
+}
+
+.baseball span{
+  position:relative;
+  z-index:2;
+  color:#07182e;
+  font-size:38px;
+  font-weight:1000;
+}
+
+.player-number{
   color:#ffd426;
-
-  font-size:16px;
-
+  font-size:14px;
   font-weight:1000;
-
-  margin-bottom:7px;
+  letter-spacing:1px;
+  margin-bottom:6px;
 }
 
-.name{
+.player-name{
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
   text-align:center;
-
-  font-size:19px;
-
+  font-size:20px;
   font-weight:1000;
-
-  line-height:1.15;
-
-  text-transform:
-    uppercase;
+  text-transform:uppercase;
+  line-height:1.12;
 }
+
+.support-text{
+  margin-top:8px;
+  color:#ffe777;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.3px;
+}
+
+/* =========================
+   GENERAL DONATION
+========================= */
+
+.general-card{
+  max-width:760px;
+  margin:42px auto 0;
+  padding:26px;
+
+  border:2px solid #ffd426;
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16,47,85,.96),
+      rgba(3,15,30,.98)
+    );
+
+  box-shadow:
+    0 16px 36px rgba(0,0,0,.4);
+}
+
+.general-card h2{
+  margin:0;
+  text-align:center;
+  color:#ffd426;
+  font-size:28px;
+  text-transform:uppercase;
+}
+
+.general-card p{
+  max-width:620px;
+  margin:12px auto 20px;
+  text-align:center;
+  color:#dce8f5;
+  line-height:1.5;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.general-input,
+.general-select{
+  width:100%;
+  padding:14px;
+  border:2px solid #536a85;
+  border-radius:11px;
+  background:#071b35;
+  color:#fff;
+  font-size:16px;
+  outline:none;
+}
+
+.general-input:focus,
+.general-select:focus{
+  border-color:#ffd426;
+}
+
+.full{
+  grid-column:1 / -1;
+}
+
+.anonymous-row{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-top:4px;
+  font-size:14px;
+  font-weight:800;
+}
+
+.anonymous-row input{
+  width:18px;
+  height:18px;
+  accent-color:#ffd426;
+}
+
+.general-button{
+  width:100%;
+  margin-top:16px;
+  padding:16px;
+  border:0;
+  border-radius:13px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #af9000,
+      #ffd426
+    );
+
+  color:#07182e;
+  font-size:17px;
+  font-weight:1000;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+
+.general-button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.general-status{
+  min-height:20px;
+  margin-top:10px;
+  text-align:center;
+  color:#fff3b0;
+  font-size:13px;
+}
+
+/* =========================
+   HOW IT WORKS
+========================= */
+
+.how-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.how-card{
+  padding:22px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:18px;
+  background:rgba(255,255,255,.05);
+  text-align:center;
+}
+
+.step{
+  width:46px;
+  height:46px;
+  margin:0 auto 12px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#ffd426;
+  color:#07182e;
+
+  font-size:21px;
+  font-weight:1000;
+}
+
+.how-card h3{
+  margin:0 0 8px;
+  color:#fff;
+  font-size:18px;
+}
+
+.how-card p{
+  margin:0;
+  color:#cbd8e7;
+  font-size:14px;
+  line-height:1.45;
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 .footer{
-  margin-top:38px;
-
+  margin-top:42px;
   text-align:center;
-
   color:#ffd426;
-
-  font-weight:900;
-
-  letter-spacing:2px;
+  font-size:13px;
+  font-weight:1000;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:900px){
-
   .grid{
-    grid-template-columns:
-      repeat(
-        3,
-        1fr
-      );
+    grid-template-columns:repeat(3,minmax(0,1fr));
   }
-
 }
 
 @media(max-width:680px){
-
   .grid{
-    grid-template-columns:
-      repeat(
-        2,
-        1fr
-      );
-
+    grid-template-columns:repeat(2,minmax(0,1fr));
     gap:12px;
   }
 
   .player-card{
-    min-height:190px;
+    min-height:210px;
+    padding:18px 10px 15px;
   }
 
   .baseball{
-    font-size:54px;
+    width:92px;
+    height:92px;
   }
 
-  .name{
-    font-size:15px;
+  .baseball span{
+    font-size:32px;
   }
 
+  .player-name{
+    font-size:16px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+  .how-grid{
+    grid-template-columns:1fr;
+  }
 }
-
 </style>
-
 </head>
 
 <body>
 
 <div class="page">
-
 <div class="wrap">
 
 <header class="header">
 
 <img
   src="/ecb-logo.png"
+  alt="Sunrise East Coast Baseball"
   class="logo"
-  alt="ECB Navy Baseball"
 >
 
 <h1 class="road">
-Road To
-<br>
-<span>
-Cooperstown
-</span>
+  Road To
+  <br>
+  <span>Cooperstown</span>
 </h1>
 
 <div class="subhead">
+  Support the ECB Navy team on their Road to Cooperstown.
+  Choose a player below and select baseballs from their individual
+  1–100 fundraiser board, or make a general donation directly to the team or player.
+</div>
 
-Choose the ECB Navy player you want to support.
-
-Pick one or more baseballs from their individual
-1–100 fundraiser board.
-
+<div class="hero-note">
+  100 Baseballs • $5,050 Goal Per Player
 </div>
 
 </header>
 
 
-<div class="choose">
-
-Select A Player To Support
-
+<div class="section-kicker">
+  Choose Your Player
 </div>
+
+<h2 class="section-title">
+  Select A Player To Support
+</h2>
 
 
 <main class="grid">
 
-<a
-  class="player-card"
-  href="/fundraiser.html?player=knox-graham"
->
-<div class="baseball">⚾</div>
-<div class="number">#1</div>
-<div class="name">Knox Graham</div>
+<a class="player-card" href="/fundraiser.html?player=knox-graham">
+  <div class="baseball"><span>1</span></div>
+  <div class="player-number">#1</div>
+  <div class="player-name">Knox Graham</div>
+  <div class="support-text">SUPPORT THIS PLAYER</div>
 </a>
 
-
-<a
-  class="player-card"
-  href="/fundraiser.html?player=ridge-crewss"
->
-<div class="baseball">⚾</div>
-<div class="number">#2</div>
-<div class="name">Ridge Crewss</div>
+<a class="player-card" href="/fundraiser.html?player=ridge-crewss">
+  <div class="baseball"><span>2</span></div>
+  <div class="player-number">#2</div>
+  <div class="player-name">Ridge Crewss</div>
+  <div class="support-text">SUPPORT THIS PLAYER</div>
 </a>
 
-
-<a
-  class="player-card"
-  href="/fundraiser.html?player=sebastian-erhard"
->
-<div class="baseball">⚾</div>
-<div class="number">#5</div>
-<div class="name">Sebastian Erhard</div>
+<a class="player-card" href="/fundraiser.html?player=sebastian-erhard">
+  <div class="baseball"><span>5</span></div>
+  <div class="player-number">#5</div>
+  <div class="player-name">Sebastian Erhard</div>
+  <div class="support-text">SUPPORT THIS PLAYER</div>
 </a>
 
-
-<a
-  class="player-card"
-  href="/fundraiser.html?player=miguel-garcia"
->
-<div class="baseball">⚾</div>
-<div class="number">#11</div>
-<div class="name">Miguel Garcia</div>
+<a class="player-card" href="/fundraiser.html?player=miguel-garcia">
+  <div class="baseball"><span>11</span></div>
+  <div class="player-number">#11</div>
+  <div class="player-name">Miguel Garcia</div>
+  <div class="support-text">SUPPORT THIS PLAYER</div>
 </a>
 
-
-<a
-  class="player-card"
-  href="/fundraiser.html?player=alfonso-santiago"
->
-<div class="baseball">⚾</div>
-<div class="number">#12</div>
-<div class="name">Alfonso Santiago</div>
+<a class="player-card" href="/fundraiser.html?player=alfonso-santiago">
+  <div class="baseball"><span>12</span></div>
+  <div class="player-number">#12</div>
+  <div class="player-name">Alfonso Santiago</div>
+  <div class="support-text">SUPPORT THIS PLAYER</div>
 </a>
 
-
-<a
-  class="player-card"
-  href="/fundraiser.html?player=cole-edgos"
->
-<div class="baseball">⚾</div>
-<div class="number">#17</div>
-<div class="name">Cole Edgos</div>
+<a class="player-card" href="/fundraiser.html?player=cole-edgos">
+  <div class="baseball"><span>17</span></div>
+  <div class="player-number">#17</div>
+  <div class="player-name">Cole Edgos</div>
+  <div class="support-text">SUPPORT THIS PLAYER</div>
 </a>
 
-
-<a
-  class="player-card"
-  href="/fundraiser.html?player=ripken-knapp"
->
-<div class="baseball">⚾</div>
-<div class="number">#19</div>
-<div class="name">Ripken Knapp</div>
+<a class="player-card" href="/fundraiser.html?player=ripken-knapp">
+  <div class="baseball"><span>19</span></div>
+  <div class="player-number">#19</div>
+  <div class="player-name">Ripken Knapp</div>
+  <div class="support-text">SUPPORT THIS PLAYER</div>
 </a>
 
-
-<a
-  class="player-card"
-  href="/fundraiser.html?player=isaac-cepeda"
->
-<div class="baseball">⚾</div>
-<div class="number">#22</div>
-<div class="name">Isaac Cepeda</div>
+<a class="player-card" href="/fundraiser.html?player=isaac-cepeda">
+  <div class="baseball"><span>22</span></div>
+  <div class="player-number">#22</div>
+  <div class="player-name">Isaac Cepeda</div>
+  <div class="support-text">SUPPORT THIS PLAYER</div>
 </a>
 
-
-<a
-  class="player-card"
-  href="/fundraiser.html?player=journey-petersen"
->
-<div class="baseball">⚾</div>
-<div class="number">#23</div>
-<div class="name">Journey Petersen</div>
+<a class="player-card" href="/fundraiser.html?player=journey-petersen">
+  <div class="baseball"><span>23</span></div>
+  <div class="player-number">#23</div>
+  <div class="player-name">Journey Petersen</div>
+  <div class="support-text">SUPPORT THIS PLAYER</div>
 </a>
 
-
-<a
-  class="player-card"
-  href="/fundraiser.html?player=jordan-santos"
->
-<div class="baseball">⚾</div>
-<div class="number">#24</div>
-<div class="name">Jordan Santos</div>
+<a class="player-card" href="/fundraiser.html?player=jordan-santos">
+  <div class="baseball"><span>24</span></div>
+  <div class="player-number">#24</div>
+  <div class="player-name">Jordan Santos</div>
+  <div class="support-text">SUPPORT THIS PLAYER</div>
 </a>
 
-
-<a
-  class="player-card"
-  href="/fundraiser.html?player=josiah-colon"
->
-<div class="baseball">⚾</div>
-<div class="number">#27</div>
-<div class="name">Josiah Colon</div>
+<a class="player-card" href="/fundraiser.html?player=josiah-colon">
+  <div class="baseball"><span>27</span></div>
+  <div class="player-number">#27</div>
+  <div class="player-name">Josiah Colon</div>
+  <div class="support-text">SUPPORT THIS PLAYER</div>
 </a>
 
-
-<a
-  class="player-card"
-  href="/fundraiser.html?player=mathias-bernal"
->
-<div class="baseball">⚾</div>
-<div class="number">#50</div>
-<div class="name">Mathias Bernal</div>
+<a class="player-card" href="/fundraiser.html?player=mathias-bernal">
+  <div class="baseball"><span>50</span></div>
+  <div class="player-number">#50</div>
+  <div class="player-name">Mathias Bernal</div>
+  <div class="support-text">SUPPORT THIS PLAYER</div>
 </a>
 
-
-<a
-  class="player-card"
-  href="/fundraiser.html?player=christian-alicea"
->
-<div class="baseball">⚾</div>
-<div class="number">#99</div>
-<div class="name">Christian Alicea</div>
+<a class="player-card" href="/fundraiser.html?player=christian-alicea">
+  <div class="baseball"><span>99</span></div>
+  <div class="player-number">#99</div>
+  <div class="player-name">Christian Alicea</div>
+  <div class="support-text">SUPPORT THIS PLAYER</div>
 </a>
 
 </main>
 
 
+<div class="section-kicker">
+  Any Amount Helps
+</div>
+
+<div class="general-card">
+
+<h2>
+  Make A General Donation
+</h2>
+
+<p>
+  Donate any amount directly to the ECB Navy team or choose a specific player.
+  Your donation will be processed securely through Stripe.
+</p>
+
+<div class="form-grid">
+
+<select
+  id="generalPlayer"
+  class="general-select"
+>
+  <option value="team">ECB Navy Team</option>
+  <option value="knox-graham">#1 Knox Graham</option>
+  <option value="ridge-crewss">#2 Ridge Crewss</option>
+  <option value="sebastian-erhard">#5 Sebastian Erhard</option>
+  <option value="miguel-garcia">#11 Miguel Garcia</option>
+  <option value="alfonso-santiago">#12 Alfonso Santiago</option>
+  <option value="cole-edgos">#17 Cole Edgos</option>
+  <option value="ripken-knapp">#19 Ripken Knapp</option>
+  <option value="isaac-cepeda">#22 Isaac Cepeda</option>
+  <option value="journey-petersen">#23 Journey Petersen</option>
+  <option value="jordan-santos">#24 Jordan Santos</option>
+  <option value="josiah-colon">#27 Josiah Colon</option>
+  <option value="mathias-bernal">#50 Mathias Bernal</option>
+  <option value="christian-alicea">#99 Christian Alicea</option>
+</select>
+
+<input
+  id="generalAmount"
+  class="general-input"
+  type="number"
+  min="1"
+  step="1"
+  placeholder="Donation Amount $"
+>
+
+<input
+  id="generalDonor"
+  class="general-input full"
+  type="text"
+  maxlength="80"
+  placeholder="Name, family name, or business"
+>
+
+<label
+  class="anonymous-row full"
+  for="generalAnonymous"
+>
+  <input
+    id="generalAnonymous"
+    type="checkbox"
+  >
+  <span>
+    Make my donation Anonymous
+  </span>
+</label>
+
+</div>
+
+<button
+  id="generalButton"
+  class="general-button"
+>
+  Donate Securely With Stripe
+</button>
+
+<div
+  id="generalStatus"
+  class="general-status"
+></div>
+
+</div>
+
+
+<div class="section-kicker">
+  Simple & Secure
+</div>
+
+<h2 class="section-title">
+  How It Works
+</h2>
+
+<div class="how-grid">
+
+<div class="how-card">
+  <div class="step">1</div>
+  <h3>Choose A Player</h3>
+  <p>
+    Select the ECB Navy player you want your contribution credited toward.
+  </p>
+</div>
+
+<div class="how-card">
+  <div class="step">2</div>
+  <h3>Pick Baseballs</h3>
+  <p>
+    On that player's page, choose one or more available baseball numbers.
+  </p>
+</div>
+
+<div class="how-card">
+  <div class="step">3</div>
+  <h3>Checkout Securely</h3>
+  <p>
+    Complete your contribution through secure Stripe Checkout.
+  </p>
+</div>
+
+</div>
+
+
 <div class="footer">
-
-ECB NAVY • ROAD TO COOPERSTOWN
-
+  Sunrise East Coast Baseball • ECB Navy • Road To Cooperstown
 </div>
 
 </div>
-
 </div>
+
+
+<script>
+
+const generalPlayer =
+  document.getElementById("generalPlayer");
+
+const generalAmount =
+  document.getElementById("generalAmount");
+
+const generalDonor =
+  document.getElementById("generalDonor");
+
+const generalAnonymous =
+  document.getElementById("generalAnonymous");
+
+const generalButton =
+  document.getElementById("generalButton");
+
+const generalStatus =
+  document.getElementById("generalStatus");
+
+
+generalAnonymous.addEventListener(
+  "change",
+  function(){
+
+    if(generalAnonymous.checked){
+
+      generalDonor.value = "";
+
+      generalDonor.disabled = true;
+
+      generalDonor.placeholder =
+        "Anonymous donation";
+
+    }else{
+
+      generalDonor.disabled = false;
+
+      generalDonor.placeholder =
+        "Name, family name, or business";
+
+    }
+
+  }
+);
+
+
+generalButton.addEventListener(
+  "click",
+  async function(){
+
+    const amount =
+      Number(
+        generalAmount.value
+      );
+
+    if(
+      !Number.isFinite(amount) ||
+      amount < 1
+    ){
+
+      generalStatus.textContent =
+        "Please enter a valid donation amount.";
+
+      return;
+    }
+
+
+    const anonymous =
+      generalAnonymous.checked === true;
+
+    let donorName =
+      generalDonor.value
+        .trim()
+        .replace(/\s+/g," ");
+
+
+    if(
+      !anonymous &&
+      donorName.length < 2
+    ){
+
+      generalStatus.textContent =
+        "Please enter the name you want displayed or choose Anonymous.";
+
+      generalDonor.focus();
+
+      return;
+    }
+
+
+    if(anonymous){
+      donorName = "Anonymous";
+    }
+
+
+    generalButton.disabled =
+      true;
+
+    generalButton.textContent =
+      "Preparing Secure Checkout...";
+
+    generalStatus.textContent =
+      "Connecting to Stripe...";
+
+
+    try{
+
+      const response =
+        await fetch(
+          "/api/create-checkout",
+          {
+            method:"POST",
+
+            headers:{
+              "Content-Type":
+                "application/json",
+
+              "Accept":
+                "application/json"
+            },
+
+            body:JSON.stringify({
+
+              type:
+                "general",
+
+              playerKey:
+                generalPlayer.value,
+
+              amount:
+                amount,
+
+              donorName:
+                donorName,
+
+              anonymous:
+                anonymous
+
+            })
+          }
+        );
+
+
+      const text =
+        await response.text();
+
+      let data;
+
+      try{
+
+        data =
+          JSON.parse(text);
+
+      }catch(error){
+
+        throw new Error(
+          "Checkout server returned invalid data."
+        );
+
+      }
+
+
+      if(
+        !response.ok ||
+        !data.url
+      ){
+
+        throw new Error(
+          data && data.error
+            ? data.error
+            : "Unable to create Stripe checkout."
+        );
+
+      }
+
+
+      generalStatus.textContent =
+        "Opening Stripe...";
+
+      window.location.href =
+        data.url;
+
+
+    }catch(error){
+
+      console.error(
+        "General donation error:",
+        error
+      );
+
+      generalStatus.textContent =
+        error && error.message
+          ? error.message
+          : "Unable to start checkout.";
+
+      generalButton.disabled =
+        false;
+
+      generalButton.textContent =
+        "Donate Securely With Stripe";
+
+    }
+
+  }
+);
+
+</script>
 
 </body>
-
 </html>
