@@ -14,6 +14,11 @@ const players = [
   { key: "christian-alicea", name: "Christian Alicea", number: 99 }
 ];
 
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
 const playerSelect = document.getElementById("playerSelect");
 const fundraiserSection = document.getElementById("fundraiserSection");
 const selectedPlayerName = document.getElementById("selectedPlayerName");
@@ -36,13 +41,35 @@ let currentPlayer = null;
 let selectedBaseballs = new Set();
 let soldBaseballs = new Set();
 
-/*
-  Later, soldBaseballs will be loaded from Supabase.
-  For now, the board starts with all baseballs available.
-*/
-
 function getPlayerByKey(key) {
   return players.find(player => player.key === key) || null;
+}
+
+async function loadSoldBaseballs(playerKey) {
+  soldBaseballs.clear();
+
+  const { data, error } = await supabaseClient
+    .from("fundraiser_balls")
+    .select("ball_number,status")
+    .eq("player_key", playerKey);
+
+  if (error) {
+    console.error("Error loading sold baseballs:", error);
+
+    alert(
+      "There was a problem loading this player's fundraiser board. Please refresh and try again."
+    );
+
+    return false;
+  }
+
+  data.forEach(row => {
+    if (row.status === "sold") {
+      soldBaseballs.add(row.ball_number);
+    }
+  });
+
+  return true;
 }
 
 function renderBoard() {
@@ -91,7 +118,10 @@ function toggleBaseball(number, button) {
 }
 
 function calculateSelectedTotal() {
-  return [...selectedBaseballs].reduce((sum, number) => sum + number, 0);
+  return [...selectedBaseballs].reduce(
+    (sum, number) => sum + number,
+    0
+  );
 }
 
 function updateCheckoutSummary() {
@@ -104,31 +134,60 @@ function updateCheckoutSummary() {
   checkoutButton.disabled = count === 0 || !currentPlayer;
 }
 
-function resetBoardForPlayer() {
-  selectedBaseballs.clear();
-  soldBaseballs.clear();
-  renderBoard();
-}
-
-playerSelect.addEventListener("change", () => {
+playerSelect.addEventListener("change", async () => {
   const playerKey = playerSelect.value;
 
   if (!playerKey) {
     currentPlayer = null;
     fundraiserSection.classList.add("hidden");
     selectedBaseballs.clear();
+    soldBaseballs.clear();
     updateCheckoutSummary();
     return;
   }
 
   currentPlayer = getPlayerByKey(playerKey);
 
+  if (!currentPlayer) {
+    return;
+  }
+
   selectedPlayerName.textContent =
     `#${currentPlayer.number} ${currentPlayer.name}`;
 
   fundraiserSection.classList.remove("hidden");
 
-  resetBoardForPlayer();
+  selectedBaseballs.clear();
+
+  baseballGrid.innerHTML = `
+    <div style="
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 30px;
+      font-weight: 700;
+    ">
+      Loading fundraiser board...
+    </div>
+  `;
+
+  checkoutButton.disabled = true;
+
+  const loaded = await loadSoldBaseballs(currentPlayer.key);
+
+  if (!loaded) {
+    baseballGrid.innerHTML = `
+      <div style="
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 30px;
+      ">
+        Unable to load fundraiser board.
+      </div>
+    `;
+    return;
+  }
+
+  renderBoard();
 
   fundraiserSection.scrollIntoView({
     behavior: "smooth",
@@ -175,7 +234,10 @@ checkoutButton.addEventListener("click", async () => {
     return;
   }
 
-  const baseballNumbers = [...selectedBaseballs].sort((a, b) => a - b);
+  const baseballNumbers = [...selectedBaseballs].sort(
+    (a, b) => a - b
+  );
+
   const total = calculateSelectedTotal();
 
   const finalDonorName = anonymousDonation.checked
@@ -194,15 +256,6 @@ checkoutButton.addEventListener("click", async () => {
   };
 
   console.log("Baseball checkout:", checkoutData);
-
-  /*
-    Stripe checkout will be connected here next.
-
-    Eventually this will call:
-    /api/create-checkout-session
-
-    and send checkoutData to the backend.
-  */
 
   alert(
     `Checkout ready:\n\n` +
@@ -235,7 +288,9 @@ generalDonationButton.addEventListener("click", async () => {
   const donationData = {
     type: "general",
     playerKey: selectedPlayer ? selectedPlayer.key : "team",
-    playerName: selectedPlayer ? selectedPlayer.name : "ECB Navy Team",
+    playerName: selectedPlayer
+      ? selectedPlayer.name
+      : "ECB Navy Team",
     playerNumber: selectedPlayer ? selectedPlayer.number : null,
     amount,
     donorName: finalDonorName,
@@ -243,15 +298,6 @@ generalDonationButton.addEventListener("click", async () => {
   };
 
   console.log("General donation:", donationData);
-
-  /*
-    Stripe checkout will be connected here next.
-
-    Eventually this will call:
-    /api/create-checkout-session
-
-    and send donationData to the backend.
-  */
 
   alert(
     `General donation ready:\n\n` +
