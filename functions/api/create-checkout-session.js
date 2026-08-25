@@ -1,6 +1,6 @@
-export async function onRequestPost(context) {
+export async function onRequestPost({ request, env }) {
   try {
-    const body = await context.request.json();
+    const body = await request.json();
 
     const {
       type,
@@ -13,14 +13,14 @@ export async function onRequestPost(context) {
     } = body;
 
     if (!amount || Number(amount) < 1) {
-      return json(
+      return responseJson(
         { success: false, error: "Invalid donation amount." },
         400
       );
     }
 
-    if (!context.env.STRIPE_SECRET_KEY) {
-      return json(
+    if (!env.STRIPE_SECRET_KEY) {
+      return responseJson(
         { success: false, error: "Stripe secret key is not configured." },
         500
       );
@@ -28,89 +28,71 @@ export async function onRequestPost(context) {
 
     const amountInCents = Math.round(Number(amount) * 100);
 
-    let description = "";
+    let description;
 
     if (type === "baseballs") {
       description =
-        `ECB Navy Cooperstown Fundraiser — ` +
-        `#${playerNumber} ${playerName} — ` +
+        `ECB Navy Cooperstown Fundraiser - ` +
+        `#${playerNumber} ${playerName} - ` +
         `Baseballs: ${baseballNumbers.join(", ")}`;
     } else {
       description =
         playerKey === "team"
-          ? "ECB Navy Cooperstown Fundraiser — General Team Donation"
-          : `ECB Navy Cooperstown Fundraiser — #${playerNumber} ${playerName} — General Donation`;
+          ? "ECB Navy Cooperstown Fundraiser - General Team Donation"
+          : `ECB Navy Cooperstown Fundraiser - #${playerNumber} ${playerName} - General Donation`;
     }
 
-    const origin = new URL(context.request.url).origin;
+    const origin = new URL(request.url).origin;
 
     const params = new URLSearchParams();
 
-    params.append("mode", "payment");
-
-    params.append(
+    params.set("mode", "payment");
+    params.set(
       "success_url",
       `${origin}/?success=1&session_id={CHECKOUT_SESSION_ID}`
     );
-
-    params.append(
+    params.set(
       "cancel_url",
       `${origin}/?canceled=1`
     );
 
-    params.append(
+    params.set(
       "line_items[0][price_data][currency]",
       "usd"
     );
 
-    params.append(
+    params.set(
       "line_items[0][price_data][product_data][name]",
       "ECB Navy Road to Cooperstown"
     );
 
-    params.append(
+    params.set(
       "line_items[0][price_data][product_data][description]",
       description
     );
 
-    params.append(
+    params.set(
       "line_items[0][price_data][unit_amount]",
-      amountInCents.toString()
+      String(amountInCents)
     );
 
-    params.append(
+    params.set(
       "line_items[0][quantity]",
       "1"
     );
 
-    params.append(
-      "metadata[type]",
-      type || ""
-    );
-
-    params.append(
-      "metadata[player_key]",
-      playerKey || ""
-    );
-
-    params.append(
-      "metadata[player_name]",
-      playerName || ""
-    );
-
-    params.append(
+    params.set("metadata[type]", type || "");
+    params.set("metadata[player_key]", playerKey || "");
+    params.set("metadata[player_name]", playerName || "");
+    params.set(
       "metadata[player_number]",
-      playerNumber !== null && playerNumber !== undefined
-        ? String(playerNumber)
-        : ""
+      playerNumber == null ? "" : String(playerNumber)
     );
-
-    params.append(
+    params.set(
       "metadata[baseball_numbers]",
       baseballNumbers.join(",")
     );
-
-    params.append(
+    params.set(
       "metadata[donor_name]",
       donorName || "Anonymous"
     );
@@ -120,7 +102,7 @@ export async function onRequestPost(context) {
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${context.env.STRIPE_SECRET_KEY}`,
+          Authorization: `Bearer ${env.STRIPE_SECRET_KEY}`,
           "Content-Type": "application/x-www-form-urlencoded"
         },
         body: params.toString()
@@ -130,28 +112,25 @@ export async function onRequestPost(context) {
     const session = await stripeResponse.json();
 
     if (!stripeResponse.ok) {
-      console.error("Stripe error:", session);
-
-      return json(
+      return responseJson(
         {
           success: false,
           error:
             session?.error?.message ||
-            "Unable to create Stripe checkout session."
+            "Unable to create checkout session."
         },
         500
       );
     }
 
-    return json({
+    return responseJson({
       success: true,
       url: session.url,
       sessionId: session.id
     });
-  } catch (error) {
-    console.error(error);
 
-    return json(
+  } catch (error) {
+    return responseJson(
       {
         success: false,
         error: "Unexpected checkout error."
@@ -161,11 +140,11 @@ export async function onRequestPost(context) {
   }
 }
 
-function json(data, status = 200) {
+function responseJson(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
     headers: {
-      "content-type": "application/json; charset=utf-8"
+      "content-type": "application/json"
     }
   });
 }
