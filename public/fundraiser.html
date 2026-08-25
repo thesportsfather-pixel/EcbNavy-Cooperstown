@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 
 <meta
@@ -20,14 +19,13 @@ html,
 body{
   margin:0;
   padding:0;
-  background:#07182e;
+  min-height:100%;
+  background:#061426;
 }
 
 body{
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#fff;
 }
 
 *{
@@ -38,32 +36,66 @@ body{
   --navy:#07182e;
   --navy2:#0d2b50;
   --yellow:#ffd426;
-  --yellow2:#b89700;
+  --yellow-dark:#a98a00;
 
   max-width:1100px;
-
   margin:0 auto;
-
-  padding:
-    35px 18px
-    280px;
+  padding:26px 18px 260px;
 
   min-height:100vh;
-
-  color:#fff;
 
   background:
     radial-gradient(
       circle at top,
-      #163c68 0%,
-      #0c284b 38%,
-      #07182e 67%,
-      #020711 100%
+      #234c7c 0%,
+      #102f55 30%,
+      #071a32 62%,
+      #020914 100%
     );
 }
 
 
-/* HEADER */
+/* =========================
+   BACK
+========================= */
+
+.back-wrap{
+  margin-bottom:18px;
+}
+
+.back-button{
+  display:inline-block;
+
+  padding:10px 16px;
+
+  border:2px solid var(--yellow);
+  border-radius:10px;
+
+  background:rgba(0,0,0,.22);
+
+  color:var(--yellow);
+
+  font-size:13px;
+  font-weight:900;
+
+  text-decoration:none;
+
+  text-transform:uppercase;
+
+  letter-spacing:1px;
+
+  transition:.15s ease;
+}
+
+.back-button:hover{
+  background:var(--yellow);
+  color:var(--navy);
+}
+
+
+/* =========================
+   HEADER
+========================= */
 
 .header{
   text-align:center;
@@ -72,214 +104,190 @@ body{
 .logo{
   display:block;
 
-  width:
-    min(
-      420px,
-      88%
-    );
+  width:min(420px,88%);
 
   height:auto;
 
-  margin:
-    0 auto
-    20px;
+  margin:0 auto 18px;
+
+  object-fit:contain;
 
   filter:
     drop-shadow(
-      0 8px 14px
-      rgba(0,0,0,.4)
+      0 9px 18px
+      rgba(0,0,0,.42)
     );
 }
 
 .title{
   margin:0;
 
-  font-size:
-    clamp(
-      42px,
-      8vw,
-      80px
-    );
+  font-size:clamp(
+    42px,
+    8vw,
+    80px
+  );
 
   line-height:.9;
 
-  font-style:italic;
-
   font-weight:1000;
 
-  text-transform:
-    uppercase;
+  font-style:italic;
+
+  text-transform:uppercase;
 
   text-shadow:
-    3px 3px 0
-    #826900,
-
-    6px 6px 0
-    rgba(0,0,0,.4);
+    3px 3px 0 #846a00,
+    6px 6px 0 rgba(0,0,0,.4);
 }
 
 .title span{
-  color:
-    var(--yellow);
+  color:var(--yellow);
 }
 
 
-/* PLAYER SELECT */
+/* =========================
+   PLAYER HEADER
+========================= */
 
-.player-select-card{
+.player-card{
+  max-width:760px;
 
-  max-width:700px;
+  margin:30px auto 20px;
 
-  margin:
-    28px auto
-    18px;
+  padding:22px;
 
-  padding:20px;
+  border:2px solid var(--yellow);
 
-  border:
-    2px solid
-    var(--yellow);
-
-  border-radius:
-    18px;
+  border-radius:20px;
 
   background:
-    rgba(
-      0,
-      0,
-      0,
-      .28
+    linear-gradient(
+      180deg,
+      rgba(17,53,94,.92),
+      rgba(4,18,36,.96)
     );
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.35);
+
+  text-align:center;
 }
 
-.select-label{
-  display:block;
+.player-number{
+  color:var(--yellow);
 
-  margin-bottom:
-    10px;
+  font-size:15px;
 
-  color:
-    var(--yellow);
+  font-weight:1000;
 
-  text-align:
-    center;
+  letter-spacing:2px;
 
-  font-size:
-    13px;
-
-  font-weight:
-    900;
-
-  letter-spacing:
-    2px;
-
-  text-transform:
-    uppercase;
-}
-
-.player-select{
-  width:100%;
-
-  padding:
-    15px 16px;
-
-  border-radius:
-    12px;
-
-  border:
-    2px solid
-    var(--yellow);
-
-  background:
-    #071b35;
-
-  color:#fff;
-
-  font-size:
-    18px;
-
-  font-weight:
-    900;
+  text-transform:uppercase;
 }
 
 .player-name{
-  margin-top:
-    22px;
+  margin-top:4px;
 
-  text-align:
-    center;
+  font-size:34px;
 
-  font-size:
-    32px;
+  font-weight:1000;
 
-  font-weight:
-    1000;
-
-  text-transform:
-    uppercase;
+  text-transform:uppercase;
 }
 
-.subtitle{
-  margin-top:
-    8px;
+.player-subtitle{
+  margin-top:8px;
 
-  text-align:
-    center;
+  color:#dce8f5;
 
-  color:#dce6f1;
+  font-size:16px;
+
+  line-height:1.45;
 }
 
 
-/* PROGRESS */
+/* =========================
+   PAYMENT BANNER
+========================= */
+
+.payment-banner{
+  display:none;
+
+  max-width:760px;
+
+  margin:18px auto;
+
+  padding:14px 16px;
+
+  border-radius:12px;
+
+  text-align:center;
+
+  font-weight:900;
+}
+
+.payment-banner.success{
+  display:block;
+
+  border:2px solid #24d17e;
+
+  background:rgba(36,209,126,.12);
+
+  color:#e4fff1;
+}
+
+.payment-banner.cancelled{
+  display:block;
+
+  border:2px solid var(--yellow);
+
+  background:rgba(255,212,38,.1);
+
+  color:#fff6c5;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
 
 .progress-card{
-  max-width:
-    700px;
+  max-width:700px;
 
-  margin:
-    26px auto;
+  margin:26px auto;
 
   padding:20px;
 
-  border:
-    2px solid
-    var(--yellow);
+  border:2px solid var(--yellow);
 
-  border-radius:
-    18px;
+  border-radius:18px;
 
-  background:
-    rgba(
-      0,
-      0,
-      0,
-      .28
-    );
+  background:rgba(0,0,0,.28);
 }
 
 .progress-numbers{
   display:flex;
 
-  justify-content:
-    space-between;
+  justify-content:space-between;
 
-  margin-bottom:
-    10px;
+  gap:15px;
 
-  font-weight:
-    900;
+  margin-bottom:10px;
+
+  font-weight:900;
 }
 
 .progress-track{
+  width:100%;
+
   height:18px;
 
-  border-radius:
-    20px;
+  border-radius:20px;
 
   overflow:hidden;
 
-  background:
-    #233852;
+  background:#233852;
 }
 
 .progress-fill{
@@ -287,100 +295,135 @@ body{
 
   height:100%;
 
-  border-radius:
-    20px;
+  border-radius:20px;
 
   background:
     linear-gradient(
       90deg,
-      #b89700,
-      #ffd426
+      var(--yellow-dark),
+      var(--yellow)
     );
 
-  transition:
-    width .4s ease;
+  transition:.4s ease;
 }
 
 
-/* INSTRUCTIONS */
+/* =========================
+   INSTRUCTIONS
+========================= */
 
 .instructions{
-  max-width:
-    760px;
+  max-width:760px;
 
-  margin:
-    26px auto;
+  margin:28px auto 24px;
 
-  text-align:
-    center;
+  text-align:center;
 
-  line-height:
-    1.5;
+  font-size:17px;
 
-  font-size:
-    17px;
+  line-height:1.5;
 }
 
 .instructions strong{
-  color:
-    var(--yellow);
+  color:var(--yellow);
 }
 
-.example{
+.example-box{
   display:inline-block;
 
-  margin-top:
-    12px;
+  margin-top:14px;
 
-  padding:
-    10px 14px;
+  padding:10px 16px;
 
-  border-radius:
-    10px;
+  border-radius:10px;
 
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      .08
-    );
+  background:rgba(255,255,255,.08);
 
-  font-weight:
-    800;
+  font-weight:700;
 }
 
 
-/* BALL GRID */
+/* =========================
+   STATUS
+========================= */
 
-.loading{
-  padding:30px;
+.loading-message{
+  padding:35px 10px;
 
-  color:
-    var(--yellow);
+  text-align:center;
 
-  text-align:
-    center;
+  color:var(--yellow);
 
-  font-weight:
-    900;
+  font-size:18px;
+
+  font-weight:900;
 }
+
+.error-details{
+  display:none;
+
+  max-width:800px;
+
+  margin:0 auto 18px;
+
+  padding:12px;
+
+  border:1px solid rgba(255,255,255,.18);
+
+  border-radius:10px;
+
+  background:rgba(255,255,255,.06);
+
+  color:#fff;
+
+  font-size:13px;
+
+  line-height:1.4;
+
+  word-break:break-word;
+}
+
+.retry-button{
+  display:none;
+
+  margin:0 auto 25px;
+
+  padding:12px 22px;
+
+  border:2px solid var(--yellow);
+
+  border-radius:12px;
+
+  background:#07182e;
+
+  color:#fff;
+
+  font-size:15px;
+
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+
+/* =========================
+   BALL GRID
+========================= */
 
 .ball-grid{
   display:grid;
 
-  grid-template-columns:
-    repeat(
-      10,
-      1fr
-    );
+  grid-template-columns:repeat(10,1fr);
 
   gap:12px;
+
+  align-items:start;
 }
 
 .ball-card{
-  text-align:
-    center;
+  min-width:0;
+
+  text-align:center;
 }
 
 .ball{
@@ -388,78 +431,60 @@ body{
 
   aspect-ratio:1;
 
-  border-radius:
-    50%;
+  border-radius:50%;
 
-  border:
-    3px solid
-    #ddd;
+  border:3px solid #d8d8d8;
 
   background:
     radial-gradient(
       circle at 35% 30%,
-      #fff,
-      #f3f3f3 48%,
-      #d7d7d7
+      #fff 0%,
+      #f4f4f4 45%,
+      #d7d7d7 100%
     );
 
-  color:
-    #07182e;
+  color:#07182e;
+
+  font-size:clamp(15px,2vw,22px);
+
+  font-weight:1000;
 
   display:flex;
 
-  align-items:
-    center;
+  align-items:center;
 
-  justify-content:
-    center;
-
-  font-size:
-    clamp(
-      15px,
-      2vw,
-      22px
-    );
-
-  font-weight:
-    1000;
+  justify-content:center;
 
   cursor:pointer;
 
-  position:
-    relative;
+  position:relative;
 
   box-shadow:
     0 5px 12px
-    rgba(
-      0,
-      0,
-      0,
-      .35
-    );
+    rgba(0,0,0,.35);
+
+  transition:.15s ease;
+
+  user-select:none;
 }
 
 .ball:before,
 .ball:after{
   content:"";
 
-  position:
-    absolute;
+  position:absolute;
 
   width:38%;
 
   height:70%;
 
-  border:
-    2px dashed
-    #d12035;
+  border:2px dashed #cf2035;
 
   border-top:none;
 
   border-bottom:none;
 
-  border-radius:
-    50%;
+  border-radius:50%;
 
   opacity:.75;
 }
@@ -473,52 +498,59 @@ body{
 }
 
 .ball span{
-  position:
-    relative;
+  position:relative;
 
-  z-index:2;
+  z-index:3;
+
+  text-align:center;
+}
+
+.ball:hover{
+  transform:scale(1.08);
+
+  border-color:var(--yellow);
 }
 
 .ball.selected{
   background:
     linear-gradient(
       135deg,
-      #ffd426,
-      #b89700
+      var(--yellow),
+      var(--yellow-dark)
     );
 
-  color:
-    #07182e;
+  color:#07182e;
 
   border-color:#fff;
 
-  transform:
-    scale(1.07);
+  transform:scale(1.08);
 
   box-shadow:
-    0 0 0 4px
-    rgba(
-      255,
-      212,
-      38,
-      .3
-    );
+    0 0 0 4px rgba(255,212,38,.28),
+    0 7px 15px rgba(0,0,0,.45);
+}
+
+.ball.selected:before,
+.ball.selected:after{
+  border-color:#fff;
+
+  opacity:.45;
 }
 
 .ball.sold{
-  background:
-    #28394d;
+  background:#26394c;
 
-  color:
-    #8293a7;
+  color:#8295a8;
 
-  border-color:
-    #536578;
+  border-color:#53697e;
 
-  cursor:
-    not-allowed;
+  cursor:not-allowed;
 
   opacity:.75;
+}
+
+.ball.sold:hover{
+  transform:none;
 }
 
 .ball.sold:before,
@@ -526,286 +558,258 @@ body{
   display:none;
 }
 
+.ball.sold span{
+  font-size:13px;
+}
+
 .donor-label{
-  min-height:
-    27px;
+  min-height:28px;
 
-  margin-top:
-    5px;
+  margin-top:6px;
 
-  color:#dce6f1;
+  padding:0 2px;
 
-  font-size:
-    10px;
+  color:#dce8f5;
 
-  font-weight:
-    800;
+  font-size:10px;
 
-  line-height:
-    1.15;
+  font-weight:800;
+
+  line-height:1.15;
+
+  overflow-wrap:anywhere;
 }
 
 
-/* GENERAL DONATION */
+/* =========================
+   CHECKOUT BAR
+========================= */
 
-.general-card{
-  max-width:
-    700px;
-
-  margin:
-    42px auto
-    20px;
-
-  padding:
-    22px;
-
-  border:
-    2px solid
-    var(--yellow);
-
-  border-radius:
-    18px;
-
-  background:
-    rgba(
-      0,
-      0,
-      0,
-      .3
-    );
-}
-
-.general-card h2{
-  margin:
-    0 0 8px;
-
-  color:
-    var(--yellow);
-
-  text-align:
-    center;
-}
-
-.general-card p{
-  text-align:
-    center;
-
-  color:#dce6f1;
-}
-
-.general-input,
-.general-select{
-  width:100%;
-
-  padding:
-    13px;
-
-  margin-top:
-    10px;
-
-  border:
-    2px solid
-    #536578;
-
-  border-radius:
-    10px;
-
-  background:
-    #071b35;
-
-  color:#fff;
-
-  font-size:
-    16px;
-}
-
-.general-button{
-  width:100%;
-
-  margin-top:
-    14px;
-
-  padding:
-    15px;
-
-  border:0;
-
-  border-radius:
-    12px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #b89700,
-      #ffd426
-    );
-
-  color:
-    #07182e;
-
-  font-size:
-    17px;
-
-  font-weight:
-    1000;
-
-  cursor:pointer;
-}
-
-
-/* CHECKOUT BAR */
-
-.checkout-box{
+.donation-box{
   position:fixed;
 
   left:50%;
 
   bottom:12px;
 
-  transform:
-    translateX(-50%);
+  transform:translateX(-50%);
 
-  width:
-    min(
-      1040px,
-      calc(
-        100% - 24px
-      )
-    );
+  width:min(
+    1040px,
+    calc(100% - 24px)
+  );
 
-  padding:
-    12px 14px;
+  padding:12px 14px;
 
-  border:
-    2px solid
-    var(--yellow);
+  border:2px solid var(--yellow);
 
-  border-radius:
-    16px;
+  border-radius:16px;
 
-  background:
-    rgba(
-      3,
-      15,
-      30,
-      .985
-    );
+  background:rgba(3,15,30,.985);
 
   box-shadow:
     0 12px 34px
-    rgba(
-      0,
-      0,
-      0,
-      .62
-    );
+    rgba(0,0,0,.62);
 
-  z-index:
-    9999;
+  z-index:9999;
 
   display:none;
 }
 
-.checkout-box.active{
+.donation-box.active{
   display:grid;
 
   grid-template-columns:
     140px
-    1fr
-    1.6fr
+    minmax(180px,1fr)
+    minmax(290px,1.6fr)
     250px;
+
+  grid-template-areas:
+    "summary detail donor pay";
 
   gap:14px;
 
-  align-items:
-    center;
+  align-items:center;
 }
 
-.amount{
-  color:
-    var(--yellow);
-
-  font-size:
-    34px;
-
-  font-weight:
-    1000;
+.selection-summary{
+  grid-area:summary;
 }
 
-.detail{
-  font-size:
-    13px;
+.selected-label{
+  color:var(--yellow);
+
+  font-size:10px;
+
+  font-weight:900;
+
+  letter-spacing:1.5px;
+
+  text-transform:uppercase;
 }
 
-.donor-input{
-  width:100%;
-
-  padding:
-    10px;
-
-  border:
-    2px solid
-    #536578;
-
-  border-radius:
-    9px;
-
-  background:
-    #071b35;
+.donation-amount{
+  margin:3px 0;
 
   color:#fff;
+
+  font-size:34px;
+
+  font-weight:1000;
+
+  line-height:1;
 }
 
-.anonymous{
+.selected-count{
+  color:#ffe777;
+
+  font-size:12px;
+
+  font-weight:900;
+}
+
+.donation-detail{
+  grid-area:detail;
+
+  font-size:13px;
+
+  line-height:1.35;
+}
+
+.donor-form{
+  grid-area:donor;
+
+  padding:10px;
+
+  border:1px solid rgba(255,255,255,.18);
+
+  border-radius:11px;
+
+  background:rgba(255,255,255,.05);
+}
+
+.donor-form-label{
+  display:block;
+
+  margin-bottom:5px;
+
+  color:var(--yellow);
+
+  font-size:10px;
+
+  font-weight:900;
+
+  letter-spacing:1.2px;
+
+  text-transform:uppercase;
+}
+
+.donor-name-input{
+  width:100%;
+
+  padding:9px 10px;
+
+  border:2px solid #53697e;
+
+  border-radius:9px;
+
+  background:#071b35;
+
+  color:#fff;
+
+  font-size:14px;
+
+  outline:none;
+}
+
+.donor-name-input:focus{
+  border-color:var(--yellow);
+}
+
+.donor-name-input:disabled{
+  opacity:.55;
+
+  cursor:not-allowed;
+}
+
+.anonymous-row{
   display:flex;
+
+  align-items:center;
 
   gap:7px;
 
-  margin-top:
-    7px;
+  margin-top:7px;
 
-  font-size:
-    12px;
+  font-size:12px;
+
+  font-weight:800;
+
+  cursor:pointer;
+}
+
+.anonymous-row input{
+  width:16px;
+
+  height:16px;
+
+  accent-color:var(--yellow);
+}
+
+.pay-area{
+  grid-area:pay;
 }
 
 .pay-button{
   width:100%;
 
-  padding:
-    14px;
+  padding:13px 12px;
 
   border:0;
 
-  border-radius:
-    12px;
+  border-radius:12px;
 
   background:
     linear-gradient(
       90deg,
-      #b89700,
-      #ffd426
+      var(--yellow-dark),
+      var(--yellow)
     );
 
-  color:
-    #07182e;
+  color:#07182e;
 
-  font-weight:
-    1000;
+  font-size:15px;
+
+  font-weight:1000;
 
   cursor:pointer;
+
+  text-transform:uppercase;
 }
 
-.status{
-  margin-top:
-    6px;
+.pay-button:disabled{
+  opacity:.65;
 
-  font-size:
-    11px;
+  cursor:not-allowed;
 }
 
-.clear{
-  margin-top:
-    6px;
+.checkout-status{
+  display:none;
+
+  margin-top:8px;
+
+  color:#fff;
+
+  font-size:11px;
+
+  text-align:center;
+}
+
+.cancel-button{
+  display:block;
+
+  margin:8px auto 0;
 
   border:0;
 
@@ -815,111 +819,108 @@ body{
 
   cursor:pointer;
 
-  text-decoration:
-    underline;
+  font-size:11px;
+
+  text-decoration:underline;
 }
 
 
-/* PAYMENT */
+/* =========================
+   FOOTER
+========================= */
 
-.banner{
-  display:none;
+.goal-note{
+  margin:35px 0 0;
 
-  max-width:
-    700px;
+  color:#c6d3e1;
 
-  margin:
-    18px auto;
+  text-align:center;
 
-  padding:
-    14px;
-
-  border-radius:
-    12px;
-
-  text-align:
-    center;
-
-  font-weight:
-    900;
+  font-size:14px;
 }
 
-.banner.success{
-  display:block;
-
-  border:
-    2px solid
-    #23cf79;
-
-  background:
-    rgba(
-      35,
-      207,
-      121,
-      .12
-    );
-}
-
-.banner.cancelled{
-  display:block;
-
-  border:
-    2px solid
-    var(--yellow);
-
-  background:
-    rgba(
-      255,
-      212,
-      38,
-      .1
-    );
+.goal-note strong{
+  color:#fff;
 }
 
 .footer{
-  margin-top:
-    30px;
+  margin-top:12px;
 
-  text-align:
-    center;
+  color:var(--yellow);
 
-  color:
-    var(--yellow);
+  font-weight:1000;
 
-  font-weight:
-    1000;
+  letter-spacing:3px;
 
-  letter-spacing:
-    2px;
+  text-transform:uppercase;
 }
 
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:850px){
 
-.checkout-box.active{
-  grid-template-columns:
-    100px
-    1fr;
+  .ball-grid{
+    grid-template-columns:repeat(5,1fr);
 
-  gap:
-    9px 12px;
+    gap:9px;
+  }
+
+  .donation-box.active{
+    grid-template-columns:100px 1fr;
+
+    grid-template-areas:
+      "summary detail"
+      "donor donor"
+      "pay pay";
+
+    gap:9px 12px;
+  }
+
+  .donation-box{
+    bottom:8px;
+
+    width:calc(100% - 16px);
+
+    padding:10px;
+
+    max-height:48vh;
+
+    overflow-y:auto;
+  }
+
+  #fundraiser{
+    padding-bottom:300px;
+  }
 }
 
-.checkout-donor,
-.checkout-pay{
-  grid-column:
-    1 / -1;
-}
+@media(max-width:480px){
 
-.ball-grid{
-  grid-template-columns:
-    repeat(
-      5,
-      1fr
-    );
+  #fundraiser{
+    padding-left:12px;
 
-  gap:8px;
-}
+    padding-right:12px;
+  }
+
+  .ball-grid{
+    gap:7px;
+  }
+
+  .ball{
+    border-width:2px;
+
+    font-size:15px;
+  }
+
+  .progress-numbers{
+    font-size:14px;
+  }
+
+  .player-name{
+    font-size:28px;
+  }
 
 }
 
@@ -927,122 +928,69 @@ body{
 
 </head>
 
-
 <body>
 
 <div id="fundraiser">
+
+
+<div class="back-wrap">
+
+<a
+  href="/"
+  class="back-button"
+>
+  ← Back to Team Page
+</a>
+
+</div>
 
 
 <div class="header">
 
 <img
   src="/ecb-logo.png"
+  alt="Sunrise East Coast Baseball"
   class="logo"
-  alt="ECB Navy"
 >
 
 <h1 class="title">
-
-Road To
-<br>
-
-<span>
-Cooperstown
-</span>
-
+  Road To
+  <br>
+  <span>
+    Cooperstown
+  </span>
 </h1>
 
 </div>
 
 
-<div class="player-select-card">
+<div
+  class="payment-banner"
+  id="paymentBanner"
+></div>
 
-<label
-  class="select-label"
-  for="playerSelect"
+
+<div class="player-card">
+
+<div
+  class="player-number"
+  id="playerNumber"
 >
-
-Select The Player You're Supporting
-
-</label>
-
-<select
-  id="playerSelect"
-  class="player-select"
->
-
-<option value="knox-graham">
-#1 Knox Graham
-</option>
-
-<option value="ridge-crewss">
-#2 Ridge Crewss
-</option>
-
-<option value="sebastian-erhard">
-#5 Sebastian Erhard
-</option>
-
-<option value="miguel-garcia">
-#11 Miguel Garcia
-</option>
-
-<option value="alfonso-santiago">
-#12 Alfonso Santiago
-</option>
-
-<option value="cole-edgos">
-#17 Cole Edgos
-</option>
-
-<option value="ripken-knapp">
-#19 Ripken Knapp
-</option>
-
-<option value="isaac-cepeda">
-#22 Isaac Cepeda
-</option>
-
-<option value="journey-petersen">
-#23 Journey Petersen
-</option>
-
-<option value="jordan-santos">
-#24 Jordan Santos
-</option>
-
-<option value="josiah-colon">
-#27 Josiah Colon
-</option>
-
-<option value="mathias-bernal">
-#50 Mathias Bernal
-</option>
-
-<option value="christian-alicea">
-#99 Christian Alicea
-</option>
-
-</select>
-
+  PLAYER
 </div>
 
-
 <div
-  id="paymentBanner"
-  class="banner"
-></div>
-
-
-<div
-  id="playerName"
   class="player-name"
-></div>
+  id="playerName"
+>
+  Loading Player...
+</div>
 
-
-<div class="subtitle">
+<div class="player-subtitle">
 
 Help fill all 100 baseballs and make the Cooperstown dream a reality.
+
+</div>
 
 </div>
 
@@ -1052,11 +1000,11 @@ Help fill all 100 baseballs and make the Cooperstown dream a reality.
 <div class="progress-numbers">
 
 <span id="raisedText">
-$0 Raised
+  $0 Raised
 </span>
 
 <span>
-$5,050 Goal
+  $5,050 Goal
 </span>
 
 </div>
@@ -1065,8 +1013,8 @@ $5,050 Goal
 <div class="progress-track">
 
 <div
-  id="progressFill"
   class="progress-fill"
+  id="progressFill"
 ></div>
 
 </div>
@@ -1077,18 +1025,20 @@ $5,050 Goal
 <div class="instructions">
 
 Choose
+
 <strong>
-one or more
+  one or more
 </strong>
-available baseballs.
+
+available baseballs below.
 
 <br>
 
-Each baseball number equals its donation value.
+The numbers on the baseballs are added together to determine your donation.
 
 <br>
 
-<div class="example">
+<div class="example-box">
 
 Baseballs #7 + #19 + #47 = $73 donation
 
@@ -1098,232 +1048,144 @@ Baseballs #7 + #19 + #47 = $73 donation
 
 
 <div
-  id="loading"
-  class="loading"
+  class="loading-message"
+  id="loadingMessage"
 >
-
-Loading fundraiser...
-
+  Loading fundraiser...
 </div>
 
 
 <div
-  id="ballGrid"
-  class="ball-grid"
+  class="error-details"
+  id="errorDetails"
 ></div>
 
 
-<div class="general-card">
-
-<h2>
-Make A General Donation
-</h2>
-
-<p>
-
-Don't want to select a baseball?
-Make any donation amount below.
-
-</p>
-
-
-<select
-  id="generalPlayer"
-  class="general-select"
->
-
-<option value="team">
-ECB Navy Team
-</option>
-
-<option value="knox-graham">
-#1 Knox Graham
-</option>
-
-<option value="ridge-crewss">
-#2 Ridge Crewss
-</option>
-
-<option value="sebastian-erhard">
-#5 Sebastian Erhard
-</option>
-
-<option value="miguel-garcia">
-#11 Miguel Garcia
-</option>
-
-<option value="alfonso-santiago">
-#12 Alfonso Santiago
-</option>
-
-<option value="cole-edgos">
-#17 Cole Edgos
-</option>
-
-<option value="ripken-knapp">
-#19 Ripken Knapp
-</option>
-
-<option value="isaac-cepeda">
-#22 Isaac Cepeda
-</option>
-
-<option value="journey-petersen">
-#23 Journey Petersen
-</option>
-
-<option value="jordan-santos">
-#24 Jordan Santos
-</option>
-
-<option value="josiah-colon">
-#27 Josiah Colon
-</option>
-
-<option value="mathias-bernal">
-#50 Mathias Bernal
-</option>
-
-<option value="christian-alicea">
-#99 Christian Alicea
-</option>
-
-</select>
-
-
-<input
-  id="generalAmount"
-  class="general-input"
-  type="number"
-  min="1"
-  step="1"
-  placeholder="Donation Amount $"
->
-
-
-<input
-  id="generalDonor"
-  class="general-input"
-  type="text"
-  maxlength="80"
-  placeholder="Name to display"
->
-
-
-<label class="anonymous">
-
-<input
-  id="generalAnonymous"
-  type="checkbox"
->
-
-Remain Anonymous
-
-</label>
-
-
 <button
-  id="generalButton"
-  class="general-button"
+  class="retry-button"
+  id="retryButton"
 >
-
-Make General Donation
-
+  Try Again
 </button>
 
 
 <div
-  id="generalStatus"
-  class="status"
+  class="ball-grid"
+  id="ballGrid"
+></div>
+
+
+<div
+  class="donation-box"
+  id="donationBox"
+>
+
+<div class="selection-summary">
+
+<div class="selected-label">
+  Your Selection
+</div>
+
+<div
+  class="donation-amount"
+  id="donationAmount"
+>
+  $0
+</div>
+
+<div
+  class="selected-count"
+  id="selectedCount"
 ></div>
 
 </div>
 
+
+<div
+  class="donation-detail"
+  id="donationDetail"
+></div>
+
+
+<div class="donor-form">
+
+<label
+  class="donor-form-label"
+  for="donorNameInput"
+>
+  Name To Display
+</label>
+
+<input
+  class="donor-name-input"
+  id="donorNameInput"
+  type="text"
+  maxlength="80"
+  autocomplete="name"
+  placeholder="Enter your name, family name, or business"
+>
+
+
+<label
+  class="anonymous-row"
+  for="anonymousCheckbox"
+>
+
+<input
+  id="anonymousCheckbox"
+  type="checkbox"
+>
+
+<span>
+  Make my donation Anonymous
+</span>
+
+</label>
+
+</div>
+
+
+<div class="pay-area">
+
+<button
+  class="pay-button"
+  id="payButton"
+>
+  Pay Securely With Stripe
+</button>
+
+
+<div
+  class="checkout-status"
+  id="checkoutStatus"
+></div>
+
+
+<button
+  class="cancel-button"
+  id="cancelButton"
+>
+  Clear All Selections
+</button>
+
+</div>
+
+</div>
+
+
+<div class="goal-note">
+
+If every baseball is filled, this player will raise
+
+<strong>
+  $5,050 toward Cooperstown.
+</strong>
+
+<br><br>
 
 <div class="footer">
 
-ECB NAVY • ROAD TO COOPERSTOWN
-
-</div>
-
-
-<div
-  id="checkoutBox"
-  class="checkout-box"
->
-
-<div>
-
-<div>
-Your Selection
-</div>
-
-<div
-  id="checkoutAmount"
-  class="amount"
->
-$0
-</div>
-
-<div id="selectedCount">
-</div>
-
-</div>
-
-
-<div
-  id="checkoutDetail"
-  class="detail"
-></div>
-
-
-<div class="checkout-donor">
-
-<input
-  id="donorName"
-  class="donor-input"
-  placeholder="Name to display"
-  maxlength="80"
->
-
-<label class="anonymous">
-
-<input
-  id="anonymous"
-  type="checkbox"
->
-
-Remain Anonymous
-
-</label>
-
-</div>
-
-
-<div class="checkout-pay">
-
-<button
-  id="payButton"
-  class="pay-button"
->
-
-Pay Securely With Stripe
-
-</button>
-
-<div
-  id="checkoutStatus"
-  class="status"
-></div>
-
-<button
-  id="clearButton"
-  class="clear"
->
-
-Clear Selections
-
-</button>
+SUNRISE EAST COAST BASEBALL • ECB NAVY
 
 </div>
 
@@ -1334,1046 +1196,1277 @@ Clear Selections
 
 <script>
 
+/* ==========================================
+   ROSTER FALLBACK
+========================================== */
+
 const players = {
 
-"knox-graham":{
-  name:"Knox Graham",
-  number:1
-},
+  "knox-graham":{
+    name:"Knox Graham",
+    number:1
+  },
 
-"ridge-crewss":{
-  name:"Ridge Crewss",
-  number:2
-},
+  "ridge-crewss":{
+    name:"Ridge Crewss",
+    number:2
+  },
 
-"sebastian-erhard":{
-  name:"Sebastian Erhard",
-  number:5
-},
+  "sebastian-erhard":{
+    name:"Sebastian Erhard",
+    number:5
+  },
 
-"miguel-garcia":{
-  name:"Miguel Garcia",
-  number:11
-},
+  "miguel-garcia":{
+    name:"Miguel Garcia",
+    number:11
+  },
 
-"alfonso-santiago":{
-  name:"Alfonso Santiago",
-  number:12
-},
+  "alfonso-santiago":{
+    name:"Alfonso Santiago",
+    number:12
+  },
 
-"cole-edgos":{
-  name:"Cole Edgos",
-  number:17
-},
+  "cole-edgos":{
+    name:"Cole Edgos",
+    number:17
+  },
 
-"ripken-knapp":{
-  name:"Ripken Knapp",
-  number:19
-},
+  "ripken-knapp":{
+    name:"Ripken Knapp",
+    number:19
+  },
 
-"isaac-cepeda":{
-  name:"Isaac Cepeda",
-  number:22
-},
+  "isaac-cepeda":{
+    name:"Isaac Cepeda",
+    number:22
+  },
 
-"journey-petersen":{
-  name:"Journey Petersen",
-  number:23
-},
+  "journey-petersen":{
+    name:"Journey Petersen",
+    number:23
+  },
 
-"jordan-santos":{
-  name:"Jordan Santos",
-  number:24
-},
+  "jordan-santos":{
+    name:"Jordan Santos",
+    number:24
+  },
 
-"josiah-colon":{
-  name:"Josiah Colon",
-  number:27
-},
+  "josiah-colon":{
+    name:"Josiah Colon",
+    number:27
+  },
 
-"mathias-bernal":{
-  name:"Mathias Bernal",
-  number:50
-},
+  "mathias-bernal":{
+    name:"Mathias Bernal",
+    number:50
+  },
 
-"christian-alicea":{
-  name:"Christian Alicea",
-  number:99
-}
+  "christian-alicea":{
+    name:"Christian Alicea",
+    number:99
+  }
 
 };
 
 
-const playerSelect =
-document.getElementById(
-  "playerSelect"
-);
-
-const playerName =
-document.getElementById(
-  "playerName"
-);
-
-const ballGrid =
-document.getElementById(
-  "ballGrid"
-);
-
-const loading =
-document.getElementById(
-  "loading"
-);
-
-const raisedText =
-document.getElementById(
-  "raisedText"
-);
-
-const progressFill =
-document.getElementById(
-  "progressFill"
-);
-
-const checkoutBox =
-document.getElementById(
-  "checkoutBox"
-);
-
-const checkoutAmount =
-document.getElementById(
-  "checkoutAmount"
-);
-
-const checkoutDetail =
-document.getElementById(
-  "checkoutDetail"
-);
-
-const selectedCount =
-document.getElementById(
-  "selectedCount"
-);
-
-const donorName =
-document.getElementById(
-  "donorName"
-);
-
-const anonymous =
-document.getElementById(
-  "anonymous"
-);
-
-const payButton =
-document.getElementById(
-  "payButton"
-);
-
-const checkoutStatus =
-document.getElementById(
-  "checkoutStatus"
-);
-
-const paymentBanner =
-document.getElementById(
-  "paymentBanner"
-);
-
-
-let currentPlayer = null;
+/* ==========================================
+   STATE
+========================================== */
 
 let currentPlayerKey =
-"knox-graham";
+  "knox-graham";
 
-let baseballs = [];
+let currentPlayer =
+  null;
 
-let selected =
-new Set();
+let currentBaseballs =
+  [];
+
+let selectedBalls =
+  [];
 
 
-function getStartingPlayer(){
+/* ==========================================
+   ELEMENTS
+========================================== */
 
-const params =
-new URLSearchParams(
-  window.location.search
-);
+const playerNumber =
+  document.getElementById(
+    "playerNumber"
+  );
 
-const urlPlayer =
-params.get(
-  "player"
-);
+const playerName =
+  document.getElementById(
+    "playerName"
+  );
 
-if(
-  urlPlayer &&
-  players[urlPlayer]
-){
-  return urlPlayer;
+const grid =
+  document.getElementById(
+    "ballGrid"
+  );
+
+const loadingMessage =
+  document.getElementById(
+    "loadingMessage"
+  );
+
+const errorDetails =
+  document.getElementById(
+    "errorDetails"
+  );
+
+const retryButton =
+  document.getElementById(
+    "retryButton"
+  );
+
+const donationBox =
+  document.getElementById(
+    "donationBox"
+  );
+
+const donationAmount =
+  document.getElementById(
+    "donationAmount"
+  );
+
+const donationDetail =
+  document.getElementById(
+    "donationDetail"
+  );
+
+const selectedCount =
+  document.getElementById(
+    "selectedCount"
+  );
+
+const progressFill =
+  document.getElementById(
+    "progressFill"
+  );
+
+const raisedText =
+  document.getElementById(
+    "raisedText"
+  );
+
+const checkoutStatus =
+  document.getElementById(
+    "checkoutStatus"
+  );
+
+const paymentBanner =
+  document.getElementById(
+    "paymentBanner"
+  );
+
+const donorNameInput =
+  document.getElementById(
+    "donorNameInput"
+  );
+
+const anonymousCheckbox =
+  document.getElementById(
+    "anonymousCheckbox"
+  );
+
+const payButton =
+  document.getElementById(
+    "payButton"
+  );
+
+
+/* ==========================================
+   PLAYER FROM URL
+========================================== */
+
+function getPlayerKey(){
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const requested =
+    params.get(
+      "player"
+    );
+
+  if(
+    requested &&
+    players[requested]
+  ){
+
+    return requested;
+
+  }
+
+  return "knox-graham";
+
 }
 
-try{
 
-const saved =
-localStorage.getItem(
-  "ecbSelectedPlayer"
-);
+/* ==========================================
+   DISPLAY FALLBACK PLAYER
+========================================== */
 
-if(
-  saved &&
-  players[saved]
-){
-  return saved;
-}
+function showFallbackPlayer(){
 
-}catch(error){}
+  const fallback =
+    players[
+      currentPlayerKey
+    ];
 
-return "knox-graham";
+  playerNumber.textContent =
+    "#" +
+    fallback.number;
 
-}
-
-
-function updateURL(){
-
-const url =
-new URL(
-  window.location.href
-);
-
-url.searchParams.set(
-  "player",
-  currentPlayerKey
-);
-
-history.replaceState(
-  {},
-  "",
-  url
-);
+  playerName.textContent =
+    fallback.name.toUpperCase();
 
 }
 
+
+/* ==========================================
+   FETCH FUNDRAISER
+========================================== */
+
+async function getFundraiserData(){
+
+  const url =
+    "/api/fundraiser" +
+    "?player=" +
+    encodeURIComponent(
+      currentPlayerKey
+    ) +
+    "&t=" +
+    Date.now();
+
+
+  const response =
+    await fetch(
+      url,
+      {
+        method:"GET",
+
+        cache:"no-store",
+
+        headers:{
+          "Accept":
+            "application/json"
+        }
+      }
+    );
+
+
+  const text =
+    await response.text();
+
+
+  if(
+    !response.ok
+  ){
+
+    throw new Error(
+      "HTTP " +
+      response.status +
+      " — " +
+      text.substring(
+        0,
+        500
+      )
+    );
+
+  }
+
+
+  let data;
+
+
+  try{
+
+    data =
+      JSON.parse(
+        text
+      );
+
+  }catch(error){
+
+    throw new Error(
+      "Fundraiser API returned invalid JSON."
+    );
+
+  }
+
+
+  if(
+    !data ||
+    data.success !== true
+  ){
+
+    throw new Error(
+      data &&
+      data.error
+        ? data.error
+        : "Fundraiser returned success=false."
+    );
+
+  }
+
+
+  return data;
+
+}
+
+
+/* ==========================================
+   LOAD
+========================================== */
 
 async function loadFundraiser(){
 
-selected.clear();
+  selectedBalls =
+    [];
 
-updateCheckout();
+  updateDonationBox();
 
-loading.style.display =
-"block";
+  grid.innerHTML =
+    "";
 
-ballGrid.innerHTML =
-"";
+  loadingMessage.style.display =
+    "block";
 
-currentPlayerKey =
-playerSelect.value;
+  loadingMessage.textContent =
+    "Loading fundraiser...";
 
-currentPlayer =
-players[
-  currentPlayerKey
-];
+  errorDetails.style.display =
+    "none";
 
-playerName.textContent =
-`#${currentPlayer.number} ${currentPlayer.name}`;
+  errorDetails.textContent =
+    "";
 
-try{
-
-localStorage.setItem(
-  "ecbSelectedPlayer",
-  currentPlayerKey
-);
-
-}catch(error){}
-
-updateURL();
-
-try{
-
-const response =
-await fetch(
-  `/api/fundraiser?player=${encodeURIComponent(
-    currentPlayerKey
-  )}&t=${Date.now()}`,
-  {
-    cache:"no-store"
-  }
-);
-
-const data =
-await response.json();
-
-if(
-  !response.ok ||
-  !data.success
-){
-
-throw new Error(
-  data.error ||
-  "Unable to load fundraiser."
-);
-
-}
-
-baseballs =
-data.baseballs || [];
-
-currentPlayer =
-data.player;
-
-playerName.textContent =
-`#${currentPlayer.number} ${currentPlayer.name}`;
-
-const raised =
-Number(
-  data.totals
-    ?.raisedDollars ||
-  0
-);
-
-raisedText.textContent =
-`$${raised.toLocaleString()} Raised`;
-
-progressFill.style.width =
-`${Math.min(
-  100,
-  raised / 5050 * 100
-)}%`;
-
-renderBoard();
-
-loading.style.display =
-"none";
-
-}catch(error){
-
-loading.textContent =
-error.message ||
-"Unable to load fundraiser.";
-
-}
-
-}
+  retryButton.style.display =
+    "none";
 
 
-function renderBoard(){
-
-ballGrid.innerHTML =
-"";
-
-baseballs.forEach(
-ball => {
-
-const number =
-Number(
-  ball.ball_number
-);
-
-const card =
-document.createElement(
-  "div"
-);
-
-card.className =
-"ball-card";
+  showFallbackPlayer();
 
 
-const button =
-document.createElement(
-  "button"
-);
+  try{
 
-button.type =
-"button";
-
-button.className =
-"ball";
+    const data =
+      await getFundraiserData();
 
 
-const span =
-document.createElement(
-  "span"
-);
+    currentPlayer =
+      data.player;
 
 
-if(
-  ball.status ===
-  "sold"
-){
+    currentBaseballs =
+      Array.isArray(
+        data.baseballs
+      )
+        ? data.baseballs
+        : [];
 
-button.classList.add(
-  "sold"
-);
-
-button.disabled =
-true;
-
-span.innerHTML =
-`${number}<br><small>SOLD</small>`;
-
-const donor =
-document.createElement(
-  "div"
-);
-
-donor.className =
-"donor-label";
-
-donor.textContent =
-ball.donor_name ||
-"Anonymous";
-
-card.appendChild(
-  button
-);
-
-card.appendChild(
-  donor
-);
-
-}else{
-
-span.textContent =
-number;
-
-if(
-  selected.has(
-    number
-  )
-){
-
-button.classList.add(
-  "selected"
-);
-
-}
-
-button.addEventListener(
-  "click",
-  () => {
 
     if(
-      selected.has(
-        number
-      )
+      !currentPlayer
     ){
 
-      selected.delete(
-        number
-      );
-
-    }else{
-
-      selected.add(
-        number
+      throw new Error(
+        "Player data is missing."
       );
 
     }
 
+
+    playerNumber.textContent =
+      "#" +
+      currentPlayer.number;
+
+
+    playerName.textContent =
+      currentPlayer.name.toUpperCase();
+
+
     renderBoard();
 
-    updateCheckout();
+
+    updateProgress(
+      data.totals
+    );
+
+
+    loadingMessage.style.display =
+      "none";
+
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+
+    loadingMessage.textContent =
+      "Unable to load fundraiser.";
+
+
+    errorDetails.style.display =
+      "block";
+
+
+    errorDetails.textContent =
+      error &&
+      error.message
+        ? error.message
+        : String(
+            error
+          );
+
+
+    retryButton.style.display =
+      "block";
+
+  }
+
+}
+
+
+/* ==========================================
+   BOARD
+========================================== */
+
+function renderBoard(){
+
+  grid.innerHTML =
+    "";
+
+
+  currentBaseballs.forEach(
+    function(baseball){
+
+
+      const number =
+        Number(
+          baseball.ball_number
+        );
+
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      card.className =
+        "ball-card";
+
+
+      const ball =
+        document.createElement(
+          "div"
+        );
+
+
+      ball.className =
+        "ball";
+
+
+      const inside =
+        document.createElement(
+          "span"
+        );
+
+
+      if(
+        baseball.status ===
+        "sold"
+      ){
+
+        ball.classList.add(
+          "sold"
+        );
+
+
+        const numberLine =
+          document.createElement(
+            "div"
+          );
+
+
+        numberLine.textContent =
+          number;
+
+
+        const soldLine =
+          document.createElement(
+            "small"
+          );
+
+
+        soldLine.textContent =
+          "SOLD";
+
+
+        inside.appendChild(
+          numberLine
+        );
+
+
+        inside.appendChild(
+          soldLine
+        );
+
+
+        const donorLabel =
+          document.createElement(
+            "div"
+          );
+
+
+        donorLabel.className =
+          "donor-label";
+
+
+        const donorName =
+          typeof baseball.donor_name ===
+            "string" &&
+          baseball.donor_name
+            .trim()
+            .length > 0
+
+            ? baseball.donor_name.trim()
+
+            : "Anonymous";
+
+
+        donorLabel.textContent =
+          donorName;
+
+
+        card.appendChild(
+          ball
+        );
+
+
+        card.appendChild(
+          donorLabel
+        );
+
+
+      }else{
+
+
+        inside.textContent =
+          number;
+
+
+        if(
+          selectedBalls.includes(
+            number
+          )
+        ){
+
+          ball.classList.add(
+            "selected"
+          );
+
+        }
+
+
+        ball.addEventListener(
+          "click",
+          function(){
+
+            toggleBall(
+              number,
+              ball
+            );
+
+          }
+        );
+
+
+        card.appendChild(
+          ball
+        );
+
+      }
+
+
+      ball.appendChild(
+        inside
+      );
+
+
+      grid.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+
+/* ==========================================
+   PROGRESS
+========================================== */
+
+function updateProgress(
+  totals
+){
+
+  const raised =
+    Number(
+      totals &&
+      totals.raisedDollars
+        ? totals.raisedDollars
+        : 0
+    );
+
+
+  const percentage =
+    Math.min(
+      100,
+      Math.max(
+        0,
+        (
+          raised /
+          5050
+        ) *
+        100
+      )
+    );
+
+
+  raisedText.textContent =
+    "$" +
+    raised.toLocaleString() +
+    " Raised";
+
+
+  progressFill.style.width =
+    percentage +
+    "%";
+
+}
+
+
+/* ==========================================
+   SELECT
+========================================== */
+
+function toggleBall(
+  number,
+  element
+){
+
+  const index =
+    selectedBalls.indexOf(
+      number
+    );
+
+
+  if(
+    index === -1
+  ){
+
+    selectedBalls.push(
+      number
+    );
+
+
+    element.classList.add(
+      "selected"
+    );
+
+
+  }else{
+
+
+    selectedBalls.splice(
+      index,
+      1
+    );
+
+
+    element.classList.remove(
+      "selected"
+    );
+
+  }
+
+
+  updateDonationBox();
+
+}
+
+
+/* ==========================================
+   TOTAL
+========================================== */
+
+function selectedTotal(){
+
+  return selectedBalls.reduce(
+    function(
+      total,
+      number
+    ){
+
+      return (
+        total +
+        Number(
+          number
+        )
+      );
+
+    },
+    0
+  );
+
+}
+
+
+/* ==========================================
+   CHECKOUT BOX
+========================================== */
+
+function updateDonationBox(){
+
+  if(
+    selectedBalls.length ===
+    0
+  ){
+
+    donationBox.classList.remove(
+      "active"
+    );
+
+    return;
+
+  }
+
+
+  selectedBalls.sort(
+    function(a,b){
+      return a-b;
+    }
+  );
+
+
+  const total =
+    selectedTotal();
+
+
+  donationAmount.textContent =
+    "$" +
+    total.toLocaleString();
+
+
+  selectedCount.textContent =
+    selectedBalls.length ===
+    1
+
+      ? "1 Baseball Selected"
+
+      : selectedBalls.length +
+        " Baseballs Selected";
+
+
+  const name =
+    currentPlayer
+      ? currentPlayer.name
+      : players[
+          currentPlayerKey
+        ].name;
+
+
+  const number =
+    currentPlayer
+      ? currentPlayer.number
+      : players[
+          currentPlayerKey
+        ].number;
+
+
+  donationDetail.textContent =
+    "#" +
+    number +
+    " " +
+    name +
+    " • #" +
+    selectedBalls.join(
+      ", #"
+    );
+
+
+  donationBox.classList.add(
+    "active"
+  );
+
+}
+
+
+/* ==========================================
+   CLEAR
+========================================== */
+
+function clearSelections(){
+
+  selectedBalls =
+    [];
+
+
+  document
+    .querySelectorAll(
+      ".ball.selected"
+    )
+    .forEach(
+      function(ball){
+
+        ball.classList.remove(
+          "selected"
+        );
+
+      }
+    );
+
+
+  donationBox.classList.remove(
+    "active"
+  );
+
+
+  checkoutStatus.style.display =
+    "none";
+
+
+  checkoutStatus.textContent =
+    "";
+
+}
+
+
+/* ==========================================
+   CHECKOUT
+========================================== */
+
+async function startStripeCheckout(){
+
+  if(
+    selectedBalls.length ===
+    0
+  ){
+
+    return;
+
+  }
+
+
+  const anonymous =
+    anonymousCheckbox.checked ===
+    true;
+
+
+  let donorName =
+    donorNameInput.value
+      .trim()
+      .replace(
+        /\s+/g,
+        " "
+      );
+
+
+  if(
+    !anonymous &&
+    donorName.length < 2
+  ){
+
+    checkoutStatus.style.display =
+      "block";
+
+
+    checkoutStatus.textContent =
+      "Please enter the name you want displayed or choose Anonymous.";
+
+
+    donorNameInput.focus();
+
+
+    return;
+
+  }
+
+
+  if(
+    anonymous
+  ){
+
+    donorName =
+      "Anonymous";
+
+  }
+
+
+  const originalText =
+    payButton.textContent;
+
+
+  payButton.disabled =
+    true;
+
+
+  payButton.textContent =
+    "Preparing Secure Checkout...";
+
+
+  checkoutStatus.style.display =
+    "block";
+
+
+  checkoutStatus.textContent =
+    "Verifying your baseball selection...";
+
+
+  try{
+
+
+    const response =
+      await fetch(
+        "/api/create-checkout",
+        {
+
+          method:"POST",
+
+
+          headers:{
+
+            "Content-Type":
+              "application/json",
+
+            "Accept":
+              "application/json"
+
+          },
+
+
+          body:
+            JSON.stringify({
+
+              type:
+                "baseballs",
+
+              playerKey:
+                currentPlayerKey,
+
+              baseballs:
+                selectedBalls,
+
+              donorName:
+                donorName,
+
+              anonymous:
+                anonymous
+
+            })
+
+        }
+      );
+
+
+    const text =
+      await response.text();
+
+
+    let data;
+
+
+    try{
+
+      data =
+        JSON.parse(
+          text
+        );
+
+    }catch(error){
+
+      throw new Error(
+        "Checkout server returned invalid data."
+      );
+
+    }
+
+
+    if(
+      !response.ok ||
+      !data.url
+    ){
+
+      throw new Error(
+        data &&
+        data.error
+          ? data.error
+          : "Unable to create Stripe checkout."
+      );
+
+    }
+
+
+    checkoutStatus.textContent =
+      "Opening Stripe...";
+
+
+    window.location.href =
+      data.url;
+
+
+  }catch(error){
+
+
+    console.error(
+      error
+    );
+
+
+    checkoutStatus.textContent =
+      error &&
+      error.message
+        ? error.message
+        : "Unable to start checkout.";
+
+
+    payButton.disabled =
+      false;
+
+
+    payButton.textContent =
+      originalText;
+
+  }
+
+}
+
+
+/* ==========================================
+   ANONYMOUS
+========================================== */
+
+anonymousCheckbox.addEventListener(
+  "change",
+  function(){
+
+    if(
+      anonymousCheckbox.checked
+    ){
+
+      donorNameInput.value =
+        "";
+
+
+      donorNameInput.disabled =
+        true;
+
+
+      donorNameInput.placeholder =
+        "Anonymous donation";
+
+
+    }else{
+
+
+      donorNameInput.disabled =
+        false;
+
+
+      donorNameInput.placeholder =
+        "Enter your name, family name, or business";
+
+    }
 
   }
 );
 
-card.appendChild(
-  button
-);
+
+/* ==========================================
+   PAYMENT RETURN
+========================================== */
+
+async function handlePaymentReturn(){
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+
+  const payment =
+    params.get(
+      "payment"
+    );
+
+
+  const sessionId =
+    params.get(
+      "session_id"
+    );
+
+
+  if(
+    payment ===
+    "cancelled"
+  ){
+
+    paymentBanner.className =
+      "payment-banner cancelled";
+
+
+    paymentBanner.textContent =
+      "Payment was cancelled. Your baseballs were not marked sold.";
+
+
+    return;
+
+  }
+
+
+  if(
+    payment !==
+    "success"
+  ){
+
+    return;
+
+  }
+
+
+  paymentBanner.className =
+    "payment-banner success";
+
+
+  paymentBanner.textContent =
+    "Payment received. Confirming your baseballs...";
+
+
+  if(
+    !sessionId
+  ){
+
+    paymentBanner.textContent =
+      "Payment received. Please allow a moment for the fundraiser to update.";
+
+
+    return;
+
+  }
+
+
+  try{
+
+
+    const response =
+      await fetch(
+        "/api/verify-payment?session_id=" +
+        encodeURIComponent(
+          sessionId
+        ),
+        {
+          method:"GET",
+          cache:"no-store"
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if(
+      !response.ok ||
+      data.success !==
+      true
+    ){
+
+      throw new Error(
+        data &&
+        data.error
+          ? data.error
+          : "Unable to verify payment."
+      );
+
+    }
+
+
+    paymentBanner.textContent =
+      "Thank you! Your payment was received and the fundraiser has been updated.";
+
+
+    await loadFundraiser();
+
+
+  }catch(error){
+
+
+    paymentBanner.textContent =
+      "Payment was received. The board may take a moment to update.";
+
+  }
 
 }
 
 
-button.appendChild(
-  span
-);
+/* ==========================================
+   EVENTS
+========================================== */
 
-ballGrid.appendChild(
-  card
-);
-
-});
-
-}
-
-
-function updateCheckout(){
-
-const numbers =
-Array.from(
-  selected
-).sort(
-  (a,b) =>
-    a-b
-);
-
-if(
-  numbers.length ===
-  0
-){
-
-checkoutBox.classList.remove(
-  "active"
-);
-
-return;
-
-}
-
-const total =
-numbers.reduce(
-  (sum,n) =>
-    sum+n,
-  0
-);
-
-checkoutAmount.textContent =
-`$${total}`;
-
-selectedCount.textContent =
-numbers.length === 1
-  ? "1 Baseball Selected"
-  : `${numbers.length} Baseballs Selected`;
-
-checkoutDetail.textContent =
-`#${currentPlayer.number} ${currentPlayer.name} • #${numbers.join(", #")}`;
-
-checkoutBox.classList.add(
-  "active"
-);
-
-}
-
-
-anonymous.addEventListener(
-"change",
-() => {
-
-if(
-  anonymous.checked
-){
-
-donorName.value =
-"";
-
-donorName.disabled =
-true;
-
-donorName.placeholder =
-"Anonymous";
-
-}else{
-
-donorName.disabled =
-false;
-
-donorName.placeholder =
-"Name to display";
-
-}
-
-}
+retryButton.addEventListener(
+  "click",
+  loadFundraiser
 );
 
 
 document
-.getElementById(
-  "clearButton"
-)
-.addEventListener(
-"click",
-() => {
-
-selected.clear();
-
-renderBoard();
-
-updateCheckout();
-
-}
-);
+  .getElementById(
+    "cancelButton"
+  )
+  .addEventListener(
+    "click",
+    clearSelections
+  );
 
 
 payButton.addEventListener(
-"click",
-async () => {
-
-if(
-  !selected.size
-){
-  return;
-}
-
-let name;
-
-if(
-  anonymous.checked
-){
-
-name =
-"Anonymous";
-
-}else{
-
-name =
-donorName.value
-.trim()
-.replace(
-  /\s+/g,
-  " "
-);
-
-if(
-  !name
-){
-
-checkoutStatus.textContent =
-"Enter a donor name or choose Anonymous.";
-
-donorName.focus();
-
-return;
-
-}
-
-}
-
-payButton.disabled =
-true;
-
-payButton.textContent =
-"Creating Checkout...";
-
-checkoutStatus.textContent =
-"Preparing secure checkout...";
-
-try{
-
-const response =
-await fetch(
-  "/api/create-checkout",
-  {
-
-    method:"POST",
-
-    headers:{
-      "Content-Type":
-      "application/json"
-    },
-
-    body:
-    JSON.stringify({
-
-      type:
-      "baseballs",
-
-      playerKey:
-      currentPlayerKey,
-
-      baseballs:
-      Array.from(
-        selected
-      ),
-
-      donorName:
-      name,
-
-      anonymous:
-      anonymous.checked
-
-    })
-
-  }
-);
-
-const data =
-await response.json();
-
-if(
-  !response.ok ||
-  !data.url
-){
-
-throw new Error(
-  data.error ||
-  "Unable to create checkout."
-);
-
-}
-
-window.location.href =
-data.url;
-
-}catch(error){
-
-checkoutStatus.textContent =
-error.message;
-
-payButton.disabled =
-false;
-
-payButton.textContent =
-"Pay Securely With Stripe";
-
-}
-
-}
+  "click",
+  startStripeCheckout
 );
 
 
-/*
-GENERAL DONATIONS
-*/
+/* ==========================================
+   INITIALIZE
+========================================== */
 
-const generalPlayer =
-document.getElementById(
-  "generalPlayer"
-);
+async function initialize(){
 
-const generalAmount =
-document.getElementById(
-  "generalAmount"
-);
-
-const generalDonor =
-document.getElementById(
-  "generalDonor"
-);
-
-const generalAnonymous =
-document.getElementById(
-  "generalAnonymous"
-);
-
-const generalButton =
-document.getElementById(
-  "generalButton"
-);
-
-const generalStatus =
-document.getElementById(
-  "generalStatus"
-);
+  currentPlayerKey =
+    getPlayerKey();
 
 
-generalAnonymous.addEventListener(
-"change",
-() => {
-
-if(
-  generalAnonymous.checked
-){
-
-generalDonor.value =
-"";
-
-generalDonor.disabled =
-true;
-
-generalDonor.placeholder =
-"Anonymous";
-
-}else{
-
-generalDonor.disabled =
-false;
-
-generalDonor.placeholder =
-"Name to display";
-
-}
-
-}
-);
+  showFallbackPlayer();
 
 
-generalButton.addEventListener(
-"click",
-async () => {
+  await loadFundraiser();
 
-const amount =
-Number(
-  generalAmount.value
-);
 
-if(
-  !Number.isFinite(
-    amount
-  ) ||
-  amount < 1
-){
-
-generalStatus.textContent =
-"Enter a valid donation amount.";
-
-return;
+  await handlePaymentReturn();
 
 }
 
 
-let name;
-
-if(
-  generalAnonymous.checked
-){
-
-name =
-"Anonymous";
-
-}else{
-
-name =
-generalDonor.value
-.trim()
-.replace(
-  /\s+/g,
-  " "
-);
-
-if(
-  !name
-){
-
-generalStatus.textContent =
-"Enter a donor name or choose Anonymous.";
-
-generalDonor.focus();
-
-return;
-
-}
-
-}
-
-
-generalButton.disabled =
-true;
-
-generalButton.textContent =
-"Creating Checkout...";
-
-generalStatus.textContent =
-"Preparing secure checkout...";
-
-
-try{
-
-const response =
-await fetch(
-  "/api/create-checkout",
-  {
-
-    method:"POST",
-
-    headers:{
-      "Content-Type":
-      "application/json"
-    },
-
-    body:
-    JSON.stringify({
-
-      type:
-      "general",
-
-      playerKey:
-      generalPlayer.value,
-
-      amount,
-
-      donorName:
-      name,
-
-      anonymous:
-      generalAnonymous.checked
-
-    })
-
-  }
-);
-
-
-const data =
-await response.json();
-
-
-if(
-  !response.ok ||
-  !data.url
-){
-
-throw new Error(
-  data.error ||
-  "Unable to create checkout."
-);
-
-}
-
-
-window.location.href =
-data.url;
-
-
-}catch(error){
-
-generalStatus.textContent =
-error.message;
-
-generalButton.disabled =
-false;
-
-generalButton.textContent =
-"Make General Donation";
-
-}
-
-}
-);
-
-
-/*
-PAYMENT RETURN
-*/
-
-async function handlePaymentReturn(){
-
-const params =
-new URLSearchParams(
-  window.location.search
-);
-
-const payment =
-params.get(
-  "payment"
-);
-
-const sessionId =
-params.get(
-  "session_id"
-);
-
-
-if(
-  payment ===
-  "cancelled"
-){
-
-paymentBanner.className =
-"banner cancelled";
-
-paymentBanner.textContent =
-"Payment was cancelled.";
-
-return;
-
-}
-
-
-if(
-  payment !==
-  "success"
-){
-
-return;
-
-}
-
-
-paymentBanner.className =
-"banner success";
-
-paymentBanner.textContent =
-"Payment received. Confirming your donation...";
-
-
-if(
-  !sessionId
-){
-
-paymentBanner.textContent =
-"Payment received.";
-
-return;
-
-}
-
-
-try{
-
-const response =
-await fetch(
-  `/api/verify-payment?session_id=${encodeURIComponent(
-    sessionId
-  )}`,
-  {
-    cache:"no-store"
-  }
-);
-
-const data =
-await response.json();
-
-
-if(
-  !response.ok ||
-  !data.success
-){
-
-throw new Error(
-  data.error ||
-  "Unable to verify payment."
-);
-
-}
-
-
-paymentBanner.textContent =
-"Thank you! Your payment was received and the fundraiser has been updated.";
-
-
-await loadFundraiser();
-
-
-}catch(error){
-
-paymentBanner.textContent =
-"Payment received. The fundraiser may take a moment to update.";
-
-}
-
-}
-
-
-/*
-INITIALIZE
-*/
-
-currentPlayerKey =
-getStartingPlayer();
-
-playerSelect.value =
-currentPlayerKey;
-
-generalPlayer.value =
-currentPlayerKey;
-
-loadFundraiser();
-
-handlePaymentReturn();
-
-
-playerSelect.addEventListener(
-"change",
-async () => {
-
-currentPlayerKey =
-playerSelect.value;
-
-generalPlayer.value =
-currentPlayerKey;
-
-await loadFundraiser();
-
-}
-);
+initialize();
 
 </script>
 
