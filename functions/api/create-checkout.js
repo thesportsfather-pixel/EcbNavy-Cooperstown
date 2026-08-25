@@ -9,18 +9,34 @@ function json(data, status = 200) {
 }
 
 export async function onRequestPost({ env }) {
-  return json({
-    success: false,
-    diagnostic: true,
 
-    variables: {
-      SUPABASE_URL: !!env.SUPABASE_URL,
-      SUPABASE_SERVICE_ROLE_KEY: !!env.SUPABASE_SERVICE_ROLE_KEY,
-      STRIPE_SECRET_KEY: !!env.STRIPE_SECRET_KEY,
-      STRIPE_WEBHOOK_SECRET: !!env.STRIPE_WEBHOOK_SECRET,
+  const supabaseUrl =
+    !!env.SUPABASE_URL;
+
+  const supabaseServiceRole =
+    !!env.SUPABASE_SERVICE_ROLE_KEY;
+
+  const stripeSecret =
+    !!env.STRIPE_SECRET_KEY;
+
+  const stripeWebhookSecret =
+    !!env.STRIPE_WEBHOOK_SECRET;
+
+  return json(
+    {
+      success: false,
+
+      error:
+        "DIAGNOSTIC — " +
+        "SUPABASE_URL=" +
+        supabaseUrl +
+        " | SUPABASE_SERVICE_ROLE_KEY=" +
+        supabaseServiceRole +
+        " | STRIPE_SECRET_KEY=" +
+        stripeSecret +
+        " | STRIPE_WEBHOOK_SECRET=" +
+        stripeWebhookSecret
     },
-
-    message:
-      "true means Cloudflare sees the variable; false means it is missing from this deployment."
-  });
+    400
+  );
 }
